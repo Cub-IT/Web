@@ -31,7 +31,7 @@ gulp.task('pug',function() {
 });
 
 gulp.task('styles', function() {
-    return gulp.src('site/dev/styles/*.scss')
+    return gulp.src('site/dev/style/*.scss')
         .pipe(sass())
         .pipe(gulpCssbeautify())
         .pipe(gulp.dest('build/css'));
