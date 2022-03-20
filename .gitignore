@@ -106,3 +106,5 @@ package-lock.json
 
 build/.DS_Store
 build/
+
+.DS_Store
