@@ -1,0 +1,14 @@
+link(href=".css/header.css" rel="stylesheet")
+header
+    .row 
+        nav.navbar-custom.bg-dark.navbar
+            button.toggler-button(type='button' data-toggle='collapse' data-target='.navbar-collapse' aria-controls='navbarMenu' aria-expanded='false' aria-label='Toggle navigation')
+                span.toggler-icon.toggler-icon-top
+                span.toggler-icon.toggler-icon-middle
+                span.toggler-icon.toggler-icon-bottom
+            a.navbar-brand(href='index.html')
+                include logo
+            a.account-button(href="settings.html") 
+                include ../svg/user
+
+include menu

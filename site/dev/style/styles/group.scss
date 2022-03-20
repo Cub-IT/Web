@@ -1,0 +1,33 @@
+.group-class {
+    border-radius: 5px;
+    width: 100%;
+    height: 250px;
+}
+
+.group-class .row {
+    max-width: 100%;
+    margin: 0 !important;
+}
+
+.progress-slide {
+    height: 100%;
+    width: 100%;
+}
+
+.group-progress {
+    padding: 0 10px !important;
+    height: 100%;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.grade-plate {
+    margin: 5px;
+    min-width: 10px;
+    background-color: green;
+    border-radius: 2px;
+}
+
+.overdue {
+    background-color: rgb(255, 70, 70);
+}
