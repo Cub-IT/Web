@@ -1,0 +1,55 @@
+head
+    meta(charset="utf-8")
+    link(href="css/style.css" rel="stylesheet")
+    script(src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous")
+body
+    include includes/loader
+    include includes/header
+
+    .container.br-5.group-body.p-3
+        .row
+            .col-lg-8.col-md-12.p-3
+                .group-header.bg-dark.brt-5.p-3
+                    .about-group.pb-3
+                        .row
+                            .col-sm-6.col-md-6.col-lg-8
+                                .row.group-title
+                                    h2 ДО К-28
+                                
+                            .col-sm-6.col-md-6.col-lg-4
+                                .row.group-teacher-name.d-flex.align-items-center
+                                    .col-4.profile-photo.p-0
+                                        img(src="https://picsum.photos/400/400")
+                                    .col-8
+                                        span Alexander Slabospitsky
+                        .bt-secondary.m-3
+                        .row.group-desc
+                                span.overflow-auto Анализ Данных (лаб. занятия)122313132
+                .group-tasks.brb-5
+                    .container.p-0
+                        .col
+                            include includes/task
+                            include includes/task
+                            include includes/task
+                            include includes/task
+                            include includes/task
+                            include includes/task
+                            include includes/task
+                            
+            .col-lg-4.p-fixed.p-3
+                .position-fixed
+                    a(href="index.html")
+                        span People
+                    .people-list.d-flex.my-3
+                        .profile-photo.p-0.me-1
+                            img(src="https://picsum.photos/401/401")
+                        .profile-photo.p-0.me-1
+                            img(src="https://picsum.photos/402/402")
+                        .profile-photo.p-0.me-1
+                            img(src="https://picsum.photos/403/403")
+                        .profile-photo.p-0.me-1
+                            img(src="https://picsum.photos/404/404")
+                    
+
+    script(src="js/script.js")
+    script(src="js/group.js")
