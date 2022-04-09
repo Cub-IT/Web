@@ -1,13 +1,13 @@
-@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
-
 $dark-gray: #16191f;
 $white: #ffffff;
 $dark: rgba(var(--bs-dark-rgb));
 $header-height: 70px;
+$secondary: #6c757d;
+$font-color-white: rgb(201, 209, 217);
 
 *{
     font-family: 'Kanit',sans-serif;
-    color: white;
+    color: $font-color-white;
 }
 
 *,*:before,*:after{
@@ -30,8 +30,31 @@ body {
     background-color: $dark-gray;
 }
 
-a {
+a{
     text-decoration: none;
+}
+
+a:hover {  
+    text-decoration: underline;
+    color: $font-color-white;
+}
+
+a span {
+    opacity: 1;
+    -webkit-transition: opacity 0.1s;
+    -moz-transition: opacity 0.1s;
+    -o-transition: opacity 0.1s;
+    -ms-transition: opacity 0.1s;
+    transition: opacity 0.1s;
+}
+
+a:hover span {
+    opacity: 0.9;
+    -webkit-transition: opacity 0.1s;
+    -moz-transition: opacity 0.1s;
+    -o-transition: opacity 0.1s;
+    -ms-transition: opacity 0.1s;
+    transition: opacity 0.1s;
 }
 
 div.overflow-auto, .overflow-scroll {
@@ -41,4 +64,38 @@ div.overflow-auto, .overflow-scroll {
 
 *::-webkit-scrollbar {
     display: none;
+}
+
+.br-5 {
+    border-radius: 5px;
+}
+
+.brt-5 {
+    border-radius: 5px 5px 0 0 ;
+}
+.brb-5 {
+    border-radius: 0 0 5px 5px;
+}
+.bt-secondary {
+    border-top: 2px solid $secondary;
+}
+.min-w-100 {
+    min-width: 100% !important;
+}
+
+.scale-12 {
+    transform: scale(1);
+    transition: transform .3s ease;
+}
+.scale-12:hover {
+    transform: scale(1.2);
+    transition: transform .3s ease;
+}
+.scale-11 {
+    transform: scale(1);
+    transition: transform .3s ease;
+}
+.scale-11:hover {
+    transform: scale(1.1);
+    transition: transform .3s ease;
 }
