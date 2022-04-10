@@ -7,7 +7,8 @@
   Install node: https://nodejs.org/uk/download/ \
   npm is included in the base packages of node
 
-**Instal gulp**\
- in cmd line: _npm install --global gulp-cli_\
+- **Instal gulp**\
+  in cmd line: _npm install --global gulp-cli_\
+  and than: _npm init_\
 Come in your project folder, then write **_npm install_** to download packages. After that write in command line **_gulp_** to start a project 
   
