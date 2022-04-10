@@ -9,6 +9,6 @@
 
 - **Instal gulp**\
   in cmd line: _npm install --global gulp-cli_\
-  and than: _npm init_\
+  and then: _npm init_\
 Come in your project folder, then write **_npm install_** to download packages. After that write in command line **_gulp_** to start a project 
   
