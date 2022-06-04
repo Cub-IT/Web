@@ -1,4 +1,4 @@
-$(function() {    
+$(function() {
     // NAVBAR MENU  
     $('#menuButton').on('click', function(){
         $('navbarMenu').fadeIn('fast');

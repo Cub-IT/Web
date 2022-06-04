@@ -6,35 +6,64 @@ head
     script(src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous")
 body
     include includes/loader
-    .auth-header
+    .auth-header.mt-1
         .row
             include includes/logo
     .auth-body.d-flex-flex-column.align-itams-center
+        input(type="hidden" name="authenticity_token")
+        .auth
+            .login.auth-mode
+                .login-header.m-auto
+                    h1 Sign in to Cube IT
+                .login-body.bg-dark.m-auto
+                    form.d-flex.flex-column.justify-content-center.p-3
+                        .mb-3
+                            label.form-label(for="loginEmail") Username or email address
+                            input.form-control#loginEmail(type="email" aria-describedby="emailHelp")
+                        .mb-3
+                            .d-flex.justify-content-between
+                                label.form-label(for="loginPassword") Password
+                                a.forgot-password Forgot password?
+                            input.form-control#loginPassword(type="password")
+                        button.btn.btn-success(type="button" data="signIn") Sign in
+                        .my-3.text-center
+                            span.my-2 Or
+                        .mb-3
+                            .alt-auth.d-flex.justify-content-center
+                                include svg/github
+                                include svg/google
+                                include svg/linkedin
+                .login-footer.m-auto.p-3
+                    label.mx-2 New to Cube IT?
+                        a.mx-2.switch-auth-mode Create an account.
 
-        .login
-            .login-header.m-auto
-                h1 Sign in to Cube IT
-            .login-body.bg-dark.m-auto
-                form.d-flex.flex-column.justify-content-center.p-3
-                    input(type="hidden" name="authenticity_token")
-                    .mb-3
-                        label.form-label(for="loginEmail") Username or email address
-                        input.form-control#loginEmail(type="email" aria-describedby="emailHelp")
-                    .mb-3
-                        .d-flex.justify-content-between
-                            label.form-label(for="loginPassword") Password
-                            a.forgot-password Forgot password?
-                        input.form-control#loginPassword(type="password")
-                    button.btn.btn-success(type="submit") Sign in
-                    .my-3.text-center
-                        span.my-2 Or
-                    .mb-3
-                        .alt-auth.d-flex.justify-content-center
-                            include svg/github
-                            include svg/google
-                            include svg/linkedin
-            .auth-footer.m-auto.p-3
-                label.mx-2 New to Cube IT?
-                    a.mx-2.switch-auth-mode Create an account.
+            .registration.auth-mode.d-none
+                .registration-header.m-auto
+                    h1 Sign up to Cube IT
+                .registration-body.bg-dark.m-auto
+                    form.d-flex.flex-column.justify-content-center.p-3
+                        .mb-3
+                            label.form-label(for="registrationUsername") Username
+                            input.form-control#registrationUsername(type="text")
+                        .mb-3
+                            label.form-label(for="registrationEmail") Email address
+                            input.form-control#registrationEmail(type="email" aria-describedby="emailHelp")
+                        .mb-3
+                            label.form-label(for="registrationPassword") Password
+                            input.form-control#registrationPassword(type="password")
+                        .mb-3
+                            label.form-label(for="registrationConfirmPassword") Confirm password
+                            input.form-control#registrationConfirmPassword(type="password")
+                        button.btn.btn-success(type="button" data="signUp") Continue
+                        .my-3.text-center
+                            span.my-2 Or
+                        .mb-3
+                            .alt-auth.d-flex.justify-content-center
+                                include svg/github
+                                include svg/google
+                                include svg/linkedin
+                .registration-footer.m-auto.p-3
+                    label.mx-2 Have an account?
+                        a.mx-2.switch-auth-mode Sign in to Cube IT.
     script(src="js/script.js")
     script(src="js/authorization.js")
