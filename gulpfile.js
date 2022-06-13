@@ -10,7 +10,7 @@ gulp.task('serve', function(done) {
         .on('start', function() {
             if (!browserSync.active) {
                 console.log('Starting browser-sync server...');
-                browserSync.init({ proxy: 'localhost:9090', startPath: '/index.html' });
+                browserSync.init({ proxy: 'localhost:9090', startPath: '/main.html' });
             }
         })
         .on('restart', function() {
