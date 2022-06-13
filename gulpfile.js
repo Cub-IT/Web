@@ -4,6 +4,7 @@ const sass = require('gulp-sass')(require('sass'));
 const nodemon = require('gulp-nodemon');
 const gulpCssbeautify = require('gulp-cssbeautify');
 const browserSync = require('browser-sync').create();
+const inject = require('gulp-inject-string');
 
 gulp.task('serve', function(done) {
     return nodemon({ script: 'main.js', watch: '.', ext: 'js', done: done })
@@ -27,6 +28,7 @@ gulp.task('pug',function() {
         .pipe(pug({
             pretty: true
         }))
+        .pipe(inject.before('</head>', '<script src="js/general.js"></script>'))
         .pipe(gulp.dest('./build'));
 });
 
