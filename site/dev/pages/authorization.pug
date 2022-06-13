@@ -16,16 +16,16 @@ body
                 .login-header.m-auto
                     h1 Sign in to Cube IT
                 .login-body.bg-dark.m-auto
-                    form.d-flex.flex-column.justify-content-center.p-3
+                    form#loginForm.d-flex.flex-column.justify-content-center.p-3
                         .mb-3
-                            label.form-label(for="loginEmail") Username or email address
-                            input.form-control#loginEmail(type="email" aria-describedby="emailHelp")
+                            label.form-label.control-label(for="loginEmail") Email address
+                            input.form-control.validate#loginEmail(type="email" required autocomplete="email")
                         .mb-3
                             .d-flex.justify-content-between
-                                label.form-label(for="loginPassword") Password
+                                label.form-label.control-label(for="loginPassword") Password
                                 a.forgot-password Forgot password?
-                            input.form-control#loginPassword(type="password")
-                        button.btn.btn-success(type="button" data="signIn") Sign in
+                            input.form-control.validate#loginPassword(type="password" required autocomplete="password")
+                        button.btn.btn-success(type="submit" data="signIn") Sign in
                         .my-3.text-center
                             span.my-2 Or
                         .mb-3
@@ -41,20 +41,20 @@ body
                 .registration-header.m-auto
                     h1 Sign up to Cube IT
                 .registration-body.bg-dark.m-auto
-                    form.d-flex.flex-column.justify-content-center.p-3
+                    form#registrationForm.d-flex.flex-column.justify-content-center.p-3
                         .mb-3
-                            label.form-label(for="registrationUsername") Username
-                            input.form-control#registrationUsername(type="text")
+                            label.form-label.control-label(for="registrationUsername") Username
+                            input.form-control.validate#registrationUsername(name ="username" required autocomplete="username")
                         .mb-3
-                            label.form-label(for="registrationEmail") Email address
-                            input.form-control#registrationEmail(type="email" aria-describedby="emailHelp")
+                            label.form-label.control-label(for="registrationEmail") Email address
+                            input.form-control.validate#registrationEmail(type="email" name="email" required autocomplete="email")
                         .mb-3
-                            label.form-label(for="registrationPassword") Password
-                            input.form-control#registrationPassword(type="password")
+                            label.form-label.control-label(for="registrationPassword") Password
+                            input.form-control.validate#registrationPassword(type="password" name="password" required autocomplete="password")
                         .mb-3
-                            label.form-label(for="registrationConfirmPassword") Confirm password
-                            input.form-control#registrationConfirmPassword(type="password")
-                        button.btn.btn-success(type="button" data="signUp") Continue
+                            label.form-label.control-label(for="registrationConfirmPassword") Confirm password
+                            input.form-control.validate#registrationConfirmPassword(type="password" name="passwordC" required autocomplete="password")
+                        button.btn.btn-success(type="submit" data="signUp") Continue
                         .my-3.text-center
                             span.my-2 Or
                         .mb-3
