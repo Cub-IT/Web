@@ -12,7 +12,7 @@ $(function(){
             result.splice(i, 1);
         }
 
-        return result.join('\s\n');
+        return result.join('\n');
     }
 
     function parseStringToHtml(str) {
@@ -37,10 +37,10 @@ $(function(){
         const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         const date = new Date();
 
-        $('#task-template').contents().clone()
-        .appendTo($('.group-tasks'))
-        .find('.task-desc').html(parseStringToHtml(result)).end()
-        .find('.task-date').text(`${months[date.getMonth()]} ${date.getDate()}`);
+        var task = $('#task-template').contents().clone();
+        task.find('.task-desc').html(parseStringToHtml(result));
+        task.find('.task-date').text(`${months[date.getMonth()]} ${date.getDate()}`);
+        $('.group-tasks .container').after(task);
     })
 
     $('.media-big, .media-small').on('click', function(event) {
