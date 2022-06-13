@@ -28,3 +28,8 @@
     transform: scale(1.01);
     transition: transform .3s ease;
 }
+
+.task-owner-profile .profile-photo {
+    height: 50px !important;
+    width: 50px !important;
+}

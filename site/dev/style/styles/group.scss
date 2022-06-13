@@ -51,6 +51,7 @@
 }
 .group-tasks {
     border: 2px solid $dark;
+    min-height: 2.5em;
 }
 
 .task {
@@ -64,4 +65,27 @@
 .people-list .profile-photo {
     height: 40px !important;
     width: 40px !important;
+}
+
+.media-small {
+    display: none;
+    background: none;
+    border:none;
+}
+
+.media-big {
+    top: .5em;
+    right: -2em;
+    background: none;
+    border:none;
+}
+
+
+@media (max-width: 991.98px) {
+    .media-small {
+        display: inline;
+    }
+    .media-big {
+        display: none;
+    }
 }

@@ -1,10 +1,21 @@
-.task.bg-dark.br-5.p-3.m-3.d-flex.justify-content-between.align-items-center
-    .task-info.h-100.d-flex.flex-column.justify-content-between
-        h4.task-title.m-0.pb-2 ДО К-28 
-        span.task-desc.pt-2 Description D Description D Description D Description D
-            
-    .task-setting
-        button.task-setting-button.three-dots.scale-12
-            span.dot.dot-top
-            span.dot.dot-middle
-            span.dot.dot-bottom
+template#task-template
+    .task.bg-dark.br-5.p-3.m-3.d-flex.justify-content-between.align-items-start
+        .task-info.h-100.d-flex.flex-column.justify-content-between
+            .d-flex.mb-3
+                .task-owner-profile
+                    .profile-photo.p-0.me-1
+                        img(src="https://picsum.photos/401/401")
+                .d-flex.flex-column.justify-content-between.ms-3
+                    span.task-owner-name Alexander Slabospitsky
+                    span.task-date May 13
+            span.task-desc.pt-2 Прохання усім студентам оперативно пройти
+                                br
+                                | "Анонімне опитування про викладання курсу "Аналіз даних" (лектор Слабоспицький О.С.) для студентів потоку ПІ-2", скориставшись нижченаведеним посиланням на Google Forms:
+                                br
+                                a(href="https://forms.gle/ed6jwhgZ1RG3Wq9i8") https://forms.gle/ed6jwhgZ1RG3Wq9i8
+                
+        .task-setting.mt-2
+            button.task-setting-button.three-dots.scale-12
+                span.dot.dot-top
+                span.dot.dot-middle
+                span.dot.dot-bottom

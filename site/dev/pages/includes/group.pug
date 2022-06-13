@@ -1,11 +1,11 @@
-.col-xxl-4.col-md-6.d-flex.justify-content-center.p-3
+.col-xxl-4.col-md-6.d-flex.justify-content-center.p-3.position-relative.group
     .group-class.bg-dark
         .p-3.d-flex.flex-column.h-100.justify-content-between
             .about-group.pb-3
                 .group-header-line.d-flex.justify-content-between.align-items-center
                     .row.group-title
                         h2 ДО К-28
-                    button.task-setting-button.three-dots.scale-12
+                    button.group-setting-button.three-dots.scale-12
                         span.dot.dot-top
                         span.dot.dot-middle
                         span.dot.dot-bottom
@@ -38,6 +38,12 @@
                     .grade-plate.p-2.h-75.d-inline-block
                     .grade-plate.p-2.overdue.h-50.d-inline-block
                     .grade-plate.p-2.h-25.d-inline-block
-                   
+    .group-setting-plate.position-absolute.p-2
+        button.report-button.px-2.py-1
+            include ../svg/report
+            span.mx-2 Report this group
+        button.leave-button.px-2.py-1
+            include ../svg/leave
+            span.mx-2 Leave from group
                     
                     

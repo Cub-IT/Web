@@ -8,7 +8,7 @@ body
 
     .container.br-5.group-body.p-3
         .row
-            .col-lg-8.col-md-12.p-3
+            .col-lg-8.col-11.p-3
                 .group-header.bg-dark.brt-5.p-3
                     .about-group.pb-3
                         .row
@@ -25,19 +25,17 @@ body
                         .bt-secondary.m-3
                         .row.group-desc
                                 span.overflow-auto Анализ Данных (лаб. занятия)122313132
-                .group-tasks.brb-5
-                    .container.p-0
-                        .col
-                            include includes/task
-                            include includes/task
-                            include includes/task
-                            include includes/task
-                            include includes/task
-                            include includes/task
-                            include includes/task
-                            
-            .col-lg-4.p-fixed.p-3
-                .position-fixed
+                .d-flex.position-relative
+                    .group-tasks.brb-5.w-100
+                        .container.p-0
+                            .col
+                                button.media-small.group-action-buttons.m-3.owner-group-buttons
+                                    include svg/plus
+                                include includes/richtext            
+                    button.media-big.px-0.position-absolute.group-action-buttons.owner-group-buttons
+                        include svg/plus            
+            .col-lg-4.p-3
+                .col-lg-12
                     a(href="index.html")
                         span People
                     .people-list.d-flex.my-3
@@ -49,7 +47,6 @@ body
                             img(src="https://picsum.photos/403/403")
                         .profile-photo.p-0.me-1
                             img(src="https://picsum.photos/404/404")
-                    
-
+    include includes/task
     script(src="js/script.js")
     script(src="js/group.js")
