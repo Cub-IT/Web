@@ -1,2 +1,19 @@
+.group-setting-plate {
+    z-index: 2;
+    top: 1.7em;
+    right: 4em;
+    background-color: $dark;
+    box-shadow: 0px 0px 10px 8px $dark-gray;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.group-setting-plate button:hover {
+    opacity: .8;
+}
 
-
+.report-button, .leave-button {
+    background: none;
+    border: none;
+}

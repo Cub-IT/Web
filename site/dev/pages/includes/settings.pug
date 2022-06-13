@@ -1,30 +1,20 @@
 .settings.d-flex.h-100
     .settings-list.p-3.overflow-auto.scroll-propagation.position-sticky
-        .user-settings.d-flex.flex-column
-            a.mx-2.my-3(href="index.html")
-                include ../svg/user
-                span.ms-4 Profile
-            a.mx-2.my-3(href="index.html")
-                include ../svg/home
-                span.ms-4 Personalisation
-            a.mx-2.my-3(href="index.html")
-                include ../svg/list
-                span.ms-4 Notification
-            a.mx-2.my-3(href="index.html")
-                include ../svg/gear
-                span.ms-4 Profile
-            a.mx-2.my-3(href="index.html")
-                include ../svg/user
-                span.ms-4 Profile
-            a.mx-2.my-3(href="index.html")
-                include ../svg/home
-                span.ms-4 Personalisation
-            a.mx-2.my-3(href="index.html")
-                include ../svg/list
-                span.ms-4 Notification
-            a.mx-2.my-3(href="index.html")
-                include ../svg/gear
-                span.ms-4 Profile
+        .user-settings.d-flex.flex-column.h-100
+            .d-flex.flex-column.overflow-y.mb-auto
+                a.mx-2.my-3(href="main.html")
+                    include ../svg/user
+                    span.ms-4 Profile
+                a.mx-2.my-3(href="main.html")
+                    include ../svg/personalisation
+                    span.ms-4 Personalisation
+                a.mx-2.my-3(href="main.html")
+                    include ../svg/list
+                    span.ms-4 Notification
+            .logout
+                a.mx-2.my-3.w-100(href="authorization.html")
+                    include ../svg/leave
+                    span.ms-4 Logout
         .notification-settings
         .personalisation-settings
     .settings-body
