@@ -1,0 +1,20 @@
+{
+    "groups": {
+        "[0]": {
+            "group_id": "id",
+            "group_name": "name",
+            "group_description": "description",
+            "tasks": {
+                "[0]": {
+                    "task_id": "id",
+                    "task_name": "name",
+                    "create_date": "date",
+                    "end_date": "date",
+                    "mark": "90"
+                }
+            }
+        }
+    }
+
+    
+}
