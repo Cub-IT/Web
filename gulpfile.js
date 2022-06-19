@@ -3,16 +3,19 @@ const pug = require('gulp-pug');
 const sass = require('gulp-sass')(require('sass'));
 const nodemon = require('gulp-nodemon');
 const gulpCssbeautify = require('gulp-cssbeautify');
-const browserSync = require('browser-sync').create();
+// const browserSync = require('browser-sync').create();
 const inject = require('gulp-inject-string');
+const concat = require('gulp-concat');
+const merge = require('merge-stream');
+const maps = require('gulp-sourcemaps');
 
 gulp.task('serve', function(done) {
     return nodemon({ script: 'main.js', watch: '.', ext: 'js', done: done })
         .on('start', function() {
-            if (!browserSync.active) {
-                console.log('Starting browser-sync server...');
-                browserSync.init({ proxy: 'localhost:9090', startPath: '/main.html' });
-            }
+            // if (!browserSync.active) {
+            //     console.log('Starting browser-sync server...');
+            //     browserSync.init({ proxy: 'localhost:9090', startPath: '/authorization.html' });
+            // }
         })
         .on('restart', function() {
             console.log('Server restarted.');
@@ -29,7 +32,9 @@ gulp.task('pug',function() {
             pretty: true
         }))
         .pipe(inject.before('</head>', '<script src="js/general.js"></script>'))
+        .pipe(inject.before('</body>', '<script src="js/menu.js"></script>'))
         .pipe(gulp.dest('./build'));
+        //.pipe(browserSync.stream());
 });
 
 gulp.task('styles', function() {
@@ -37,6 +42,7 @@ gulp.task('styles', function() {
         .pipe(sass())
         .pipe(gulpCssbeautify())
         .pipe(gulp.dest('build/css'));
+        // .pipe(browserSync.stream());;
 });
 
 gulp.task('bootstrap-style', function(){
@@ -47,8 +53,17 @@ gulp.task('bootstrap-style', function(){
 });
 
 gulp.task('scripts', function() {
-    return gulp.src('site/dev/js/*.js')
-        .pipe(gulp.dest('build/js'));
+    var script = gulp.src('site/dev/js/*.js')
+                     .pipe(gulp.dest('build/js'));
+                    //  .pipe(browserSync.stream());;
+
+    var bootstrap_script = gulp.src('node_modules/bootstrap/dist/js/bootstrap.bundle.js')
+                               .pipe(maps.init())
+                               .pipe(concat('lib.js'))
+                               .pipe(maps.write('./'))
+                               .pipe(gulp.dest('build/js'));
+
+    return merge(script, bootstrap_script);
 })
 gulp.task('watch', function() {
     gulp.watch('site/dev/**/*.pug', gulp.series('pug'));
