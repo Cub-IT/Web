@@ -1,5 +1,32 @@
 $(function(){
 
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    const params = new URLSearchParams(document.location.search);
+    const groupId = params.get('groupId');
+
+    $.get(`/api/v1/user/${localStorage.userId}/groups/${groupId}`, function(callback) {
+        $('.group-title h2').text(callback.name);
+        $('.group-desc span').text(callback.description);
+        $('.group-teacher-name span').text(`${callback.ownerFirstName} ${callback.ownerLastName}`);
+        $('.teacher-profile-photo').css('background-color', callback.ownerColor);
+
+        for(var i = 0; i < callback.taskList.length; i++) {
+
+            var content = parseStringToHtml(callback.taskList[i].content);
+
+            var date = new Date(callback.taskList[i].creationDate);
+
+            var task = $('#task-template').contents().clone();
+            task.find('.task-owner-name').text(`${callback.ownerFirstName} ${callback.ownerLastName}`).end()
+                .find('.task-date').text(`${months[date.getMonth()]} ${date.getDate()}`).end()
+                .find('.task-desc').html(content).end()
+                .find('.task-owner-profile .profile-photo').css('background-color', callback.taskList[i].userColor).end()
+                .appendTo('.group-tasks');
+            //$('.group-tasks .container').append(task);
+        }
+    })
+
     function parseHtmlToString() {
         const contents = $('.richText-editor').contents();
     
@@ -34,7 +61,7 @@ $(function(){
         var result = parseHtmlToString()
         
 
-        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        
         const date = new Date();
 
         var task = $('#task-template').contents().clone();
@@ -46,8 +73,4 @@ $(function(){
     $('.media-big, .media-small').on('click', function(event) {
         $('.page-wrapper.box-content').slideToggle();
     })
-
-    parseHtmlToString();
-    // LOADER HIDE
-    $('.loader-wrapper').fadeOut('slow');
 })

@@ -99,3 +99,54 @@ div.overflow-auto, .overflow-scroll {
     transform: scale(1.1);
     transition: transform .3s ease;
 }
+
+.profile-photo{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 1px solid gray;
+    opacity: 1;
+    -webkit-transition: opacity .2s;
+    -moz-transition: opacity .2s;
+    -o-transition: opacity .2s;
+    -ms-transition: opacity .2s;
+    transition: opacity .2s;
+}
+
+.profile-photo:hover {
+    opacity: 0.6;
+    -webkit-transition: opacity .2s;
+    -moz-transition: opacity .2s;
+    -o-transition: opacity .2s;
+    -ms-transition: opacity .2s;
+    transition: opacity .2s;
+}
+
+.profile-photo svg {
+    width: 70%;
+    height: 70%;
+}
+
+.h-fit-content {
+    height: fit-content;
+}
+
+.w-fit-content {
+    width: fit-content;
+}
+
+.text-color-white {
+    color: $font-color-white !important;
+}
+
+.border-dark {
+    border: 1px solid $dark;
+    outline: none;
+    box-shadow: none;
+}
+
+.border-dark-gray {
+    border: 1px solid $dark-gray;
+    outline: none;
+    box-shadow: none;
+}

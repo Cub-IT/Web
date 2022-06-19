@@ -16,15 +16,15 @@ body
                 .login-header.m-auto
                     h1 Sign in to Cube IT
                 .login-body.bg-dark.m-auto
-                    form#loginForm.d-flex.flex-column.justify-content-center.p-3
+                    form#loginForm.d-flex.flex-column.justify-content-center.p-3(autocomplete="on")
                         .mb-3
                             label.form-label.control-label(for="loginEmail") Email address
-                            input.form-control.validate#loginEmail(type="email" required autocomplete="email")
+                            input.form-control.validate#loginEmail(type="email" max-length="45" required)
                         .mb-3
                             .d-flex.justify-content-between
                                 label.form-label.control-label(for="loginPassword") Password
                                 a.forgot-password Forgot password?
-                            input.form-control.validate#loginPassword(type="password" required autocomplete="password")
+                            input.form-control.validate#loginPassword(type="password" max-length="45" required)
                         button.btn.btn-success(type="submit" data="signIn") Sign in
                         .my-3.text-center
                             span.my-2 Or
@@ -41,20 +41,23 @@ body
                 .registration-header.m-auto
                     h1 Sign up to Cube IT
                 .registration-body.bg-dark.m-auto
-                    form#registrationForm.d-flex.flex-column.justify-content-center.p-3
+                    form#registrationForm.d-flex.flex-column.justify-content-center.p-3(autocomplete="on")
                         .mb-3
-                            label.form-label.control-label(for="registrationUsername") Username
-                            input.form-control.validate#registrationUsername(name ="username" required autocomplete="username")
+                            label.form-label.control-label(for="registrationFirstName") First name
+                            input.form-control.validate#registrationFirstName(name ="fname" required)
+                        .mb-3
+                            label.form-label.control-label(for="registrationLastName") Last name
+                            input.form-control.validate#registrationLastName(name ="lname" max-length="45" required)
                         .mb-3
                             label.form-label.control-label(for="registrationEmail") Email address
-                            input.form-control.validate#registrationEmail(type="email" name="email" required autocomplete="email")
+                            input.form-control.validate#registrationEmail(type="email" max-length="45" name="email" required)
                         .mb-3
                             label.form-label.control-label(for="registrationPassword") Password
-                            input.form-control.validate#registrationPassword(type="password" name="password" required autocomplete="password")
+                            input.form-control.validate#registrationPassword(type="password" max-length="45" name="new-password" required)
                         .mb-3
                             label.form-label.control-label(for="registrationConfirmPassword") Confirm password
-                            input.form-control.validate#registrationConfirmPassword(type="password" name="passwordC" required autocomplete="password")
-                        button.btn.btn-success(type="submit" data="signUp") Continue
+                            input.form-control.validate#registrationConfirmPassword(type="password" max-length="45" name="new-password" required)
+                        button.btn.btn-success(type="submit" data="signUp") Sign up
                         .my-3.text-center
                             span.my-2 Or
                         .mb-3

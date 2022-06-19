@@ -17,3 +17,35 @@
     background: none;
     border: none;
 }
+
+.groups-action-button {
+    background: none;
+    border:none;
+    width: fit-content;
+    outline: none;   
+}
+
+#actionGroupModal .modal-content {
+    background-color: $dark !important;
+}
+
+#actionGroupModal input, #actionGroupModal textarea {
+    background-color: $dark-gray !important;
+    outline: none !important;
+    border: none;
+    color: $font-color-white;
+    resize: none;
+}
+
+#actionGroupModal input:focus, #actionGroupModal textarea:focus {
+    outline: none !important;
+    box-shadow: none;
+}
+
+#actionGroupModal textarea {
+    height: 10em;
+}
+
+.unvisible {
+    display: none;
+}

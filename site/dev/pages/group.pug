@@ -18,8 +18,8 @@ body
                                 
                             .col-sm-6.col-md-6.col-lg-4
                                 .row.group-teacher-name.d-flex.align-items-center
-                                    .col-4.profile-photo.p-0
-                                        img(src="https://picsum.photos/400/400")
+                                    .col-4.p-0.d-flex.justify-content-center.align-items-center.profile-photo.teacher-profile-photo
+                                        include svg/profile
                                     .col-8
                                         span Alexander Slabospitsky
                         .bt-secondary.m-3
@@ -39,14 +39,16 @@ body
                     a(href="index.html")
                         span People
                     .people-list.d-flex.my-3
-                        .profile-photo.p-0.me-1
-                            img(src="https://picsum.photos/401/401")
-                        .profile-photo.p-0.me-1
-                            img(src="https://picsum.photos/402/402")
-                        .profile-photo.p-0.me-1
-                            img(src="https://picsum.photos/403/403")
-                        .profile-photo.p-0.me-1
-                            img(src="https://picsum.photos/404/404")
+                        .p-0.me-1.d-flex.justify-content-center.align-items-center.profile-photo
+                            include svg/profile
+                        .p-0.me-1.d-flex.justify-content-center.align-items-center.profile-photo
+                            include svg/profile
+                        .p-0.me-1.d-flex.justify-content-center.align-items-center.profile-photo
+                            include svg/profile
+                        .p-0.me-1.d-flex.justify-content-center.align-items-center.profile-photo
+                            include svg/profile
     include includes/task
     script(src="js/script.js")
     script(src="js/group.js")
+    script(src="js/jquery.richtext.js")
+    script(src="js/richtext.js") 

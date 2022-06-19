@@ -1,17 +1,32 @@
 .setting-profile.setting.p-4.mb-4
-    h1.setting-title.mb-4 Profile
+    .d-flex.justify-content-between
+        h1.setting-title.mb-4 Profile
+        button.edit-profile-button.h-fit-content.bg-none
+            include ../../svg/edit-pencil
     .ps-1
         h4 Profile photo
         .setting-photo.d-flex.align-items-center.my-3.ps-2
-            .profile-photo
-                img(src="https://picsum.photos/400/100")
+            .p-0.me-1.d-flex.justify-content-center.align-items-center.profile-photo
+                include ../../svg/profile
             span.m-3.text-secondary Choose profile photo
         h4 Personal information
         .setting-personal-information
-            .ps-2
+            .ps-2.me-2.h-100.container
                 .row.my-2
-                    span.user-firstname First Name:
+                    span.p-2.col-2 First Name:
+                    input.p-2.col-3.text-white.rounded-1.bg-dark.border-dark.user-firstname.edit-input(type="text" disabled)
                 .row.my-2
-                    span.user-lastname Last Name:
+                    span.p-2.col-2 Last Name:
+                    input.p-2.col-3.text-white.rounded-1.bg-dark.border-dark.user-lastname.edit-input(type="text" disabled)
                 .row.my-2
-                    span.user-email E-mail:
+                    span.p-2.col-2 E-mail:
+                    input.p-2.col-3.text-white.rounded-1.bg-dark.border-dark.user-email(type="text" disabled)
+                .row.my-2.edit
+                    span.p-2.col-2 Password:
+                    input.p-2.col-3.text-white.rounded-1.bg-dark.border-dark.user-password.edit-input(type="text" disabled)
+                .row.my-2.edit
+                    span.p-2.col-2 Confirm password:
+                    input.p-2.col-3.text-white.rounded-1.bg-dark.border-dark.user-confirmPassword.edit-input(type="text" disabled)
+                .row.my-2.edit.justify-content-end
+                    button.mx-2.col-1.btn.btn-secondary#cancel(type="button") Cancel
+                    button.mx-2.col-1.btn.btn-success#save(type="button") Save

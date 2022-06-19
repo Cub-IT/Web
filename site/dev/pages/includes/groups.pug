@@ -1,23 +1,40 @@
 block content
     section.container-xxl.groups-content.p-3
         .col
+            .row.groups-action 
+                button.px-0.groups-action-button.ms-auto.me-4(type="button" data-bs-toggle="modal" data-bs-target="#actionGroupModal")
+                    include ../svg/plus
             .row.gutter-2.gutter-lg-3.d-flex.justify-content-center.groups-place
-                include group
-                include group
-                include group
-                include group
-                include group
-                include group
-                include group
-                include group
-                include group
-                include group
-                include group
-                include group
-                include group
-                include group
-                include group
-                include group
-                include group
-                include group
-                include group
+                include group-warning
+
+#actionGroupModal.modal.fade(tabindex="-1" aria-hidden="true")
+    .modal-dialog
+        .modal-content
+            .modal-header.border-0
+                h5#actionGroupModalJoinLabel.modal-title Join to group
+                button.btn-close.btn-close-white(type="button" data-bs-dismiss="modal" aria-label="Close")
+            .modal-body 
+                form
+                    .mb-3
+                        label.col-form-label(for="join-group-code") Group code:
+                        input.form-control#join-group-code(type="text" maxlength="100")
+            .modal-footer.border-0.d-flex.justify-content-between
+                button.btn.btn-secondary.toggle-action(type="button") Create group
+                button.btn.btn-success#join(type="button") Join
+
+        .modal-content.unvisible
+            .modal-header.border-0
+                h5#actionGroupModalCreateLabel.modal-title Create group
+                button.btn-close.btn-close-white(type="button" data-bs-dismiss="modal" aria-label="Close")
+            .modal-body 
+                form
+                    .mb-3
+                        label.col-form-label(for="create-group-name") Group name:
+                        input.form-control#create-group-name(type="text" maxlength="100")
+                    .mb-3
+                        label.col-form-label(for="create-group-desc") Description:
+                        textarea.form-control#create-group-desc(maxlength="500")
+            .modal-footer.border-0.d-flex.justify-content-between
+                button.btn.btn-secondary.toggle-action(type="button") Join to group
+                button.btn.btn-success#create(type="button") Create
+include group

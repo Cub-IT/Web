@@ -22,37 +22,25 @@
     }
 }
 
-.profile-photo{
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 1px solid gray;
-    opacity: 1;
-    -webkit-transition: opacity .2s;
-    -moz-transition: opacity .2s;
-    -o-transition: opacity .2s;
-    -ms-transition: opacity .2s;
-    transition: opacity .2s;
-}
-
-.profile-photo:hover {
-    opacity: 0.6;
-    -webkit-transition: opacity .2s;
-    -moz-transition: opacity .2s;
-    -o-transition: opacity .2s;
-    -ms-transition: opacity .2s;
-    transition: opacity .2s;
-}
-
-.profile-photo img {
-    border-radius: 50%;
+.logout  {
     width: 100%;
-    height: 100%;
-    object-fit:cover;
+}
+
+.logout a {
+    width: 100%;
 }
 
 .logout .leave-icon {
     width: 30px !important;
     height: 30px !important;
+    fill: gray;
+}
+
+.edit-profile-button {
+    background: none;
+    border: none;
+}
+
+.edit-pencil-svg {
     fill: gray;
 }
