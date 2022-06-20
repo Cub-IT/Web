@@ -31,6 +31,7 @@ gulp.task('pug',function() {
         .pipe(pug({
             pretty: true
         }))
+        .pipe(inject.after('<head>', '<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">'))
         .pipe(inject.before('</head>', '<script src="js/general.js"></script>'))
         .pipe(inject.before('</body>', '<script src="js/menu.js"></script>'))
         .pipe(gulp.dest('./build'));
