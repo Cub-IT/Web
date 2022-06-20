@@ -24,7 +24,7 @@ $(function(){
             password.removeClass('invalid');
             
             const data = JSON.stringify({ "login" : email.val(), "password" : password.val() });
-            $.post('rest/login', data, function(callback) {
+            $.post('rest/api/v1/user/login', data, function(callback) {
                 localStorage.userId = callback.id ?? '';
                 localStorage.token  = callback.token  ?? '';
                 localStorage.firstName = callback.firstName;
@@ -85,6 +85,29 @@ $(function(){
 
     $('form input').on('input', function() {
         $(this).removeClass('invalid');
+    })
+
+    $('#registrationFirstName, #registrationLastName').on('input', function() {
+        const name_regex = /[\d\s]/;
+
+        const name = $(this).val();
+
+        if (name != '') {
+            if(!name_regex.test(name))
+                $(this).removeClass('invalid');
+            else {
+                $(this).addClass('invalid');
+                $(this).removeClass('valid');
+            }
+
+            if(!name_regex.test(name) && name != '')
+                $(this).addClass('valid');
+        }
+        else
+            $(this).removeClass('invalid').removeClass('valid');    
+
+        
+
     })
 
     $('#registrationEmail').on('input', function() {
