@@ -33,7 +33,7 @@
 .logout .leave-icon {
     width: 30px !important;
     height: 30px !important;
-    fill: gray;
+    fill: $danger;
 }
 
 .edit-profile-button {
@@ -44,3 +44,9 @@
 .edit-pencil-svg {
     fill: gray;
 }
+
+input[disabled="disabled"] {
+    color: $font-color-white !important;
+}
+
+

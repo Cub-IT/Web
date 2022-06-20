@@ -8,17 +8,17 @@ body
 
     .container.br-5.group-body.p-3
         .row
-            .col-lg-8.col-11.p-3
+            .col-lg-8.col-sm-12.col-md-11.p-3
                 .group-header.bg-dark.brt-5.p-3
                     .about-group.pb-3
                         .row
-                            .col-sm-6.col-md-6.col-lg-8
+                            .col-12.col-lg-8
                                 .row.group-title
                                     h2 ДО К-28
                                 
-                            .col-sm-6.col-md-6.col-lg-4
+                            .col-12.col-lg-4.m-3.m-lg-0
                                 .row.group-teacher-name.d-flex.align-items-center
-                                    .col-4.p-0.d-flex.justify-content-center.align-items-center.profile-photo.teacher-profile-photo
+                                    .col-4.p-0.d-flex.justify-content-center.align-items-center.profile-photo.teacher-profile-photo.media-profile
                                         include svg/profile
                                     .col-8
                                         span Alexander Slabospitsky
@@ -26,7 +26,7 @@ body
                         .row.group-desc
                                 span.overflow-auto Анализ Данных (лаб. занятия)122313132
                 .d-flex.position-relative
-                    .group-tasks.brb-5.w-100
+                    .group-tasks.br-5.w-100
                         .container.p-0
                             .col
                                 button.media-small.group-action-buttons.m-3.owner-group-buttons
@@ -49,6 +49,5 @@ body
                             include svg/profile
     include includes/task
     script(src="js/script.js")
-    script(src="js/group.js")
     script(src="js/jquery.richtext.js")
-    script(src="js/richtext.js") 
+    script(src="js/group.js")

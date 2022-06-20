@@ -73,4 +73,11 @@ $(function(){
     $('.media-big, .media-small').on('click', function(event) {
         $('.page-wrapper.box-content').slideToggle();
     })
+
+    $('.content').richText();
+
+
+
+    //hode loader
+    $('.loader-wrapper').fadeOut('slow');
 })

@@ -4,6 +4,7 @@ $dark: rgba(var(--bs-dark-rgb));
 $header-height: 70px;
 $secondary: #6c757d;
 $font-color-white: rgb(201, 209, 217);
+$danger: #dc3545;
 
 *{
     font-family: 'Kanit',sans-serif;
@@ -36,7 +37,7 @@ a{
 
 a:hover {  
     text-decoration: underline;
-    color: $font-color-white;
+    color: currentColor;
 }
 
 a span {
@@ -149,4 +150,11 @@ div.overflow-auto, .overflow-scroll {
     border: 1px solid $dark-gray;
     outline: none;
     box-shadow: none;
+}
+
+@media screen and (max-width: 992px) {
+    .media-profile {
+        width: 60px;
+        height: 60px;
+    }
 }

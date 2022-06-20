@@ -2,16 +2,13 @@ $(function(){
 
     $('.edit').hide();
 
-    $.get(`rest/api/v1/user/${localStorage.userId}`, function(callback) {
-        $('.user-firstname').val(callback.firstName);
-        $('.user-lastname').val(callback.lastName);
-        $('.user-email').val(callback.email);
+    function toggleEditWindow() {
 
-        //hide loader
-        $('.loader-wrapper').fadeOut('slow');
-    });
+        $('.user-firstname').val(localStorage.firstName).removeClass('valid').removeClass('invalid');
+        $('.user-lastname').val(localStorage.lastName).removeClass('valid').removeClass('invalid');
+        $('.user-password').val('').removeClass('valid').removeClass('invalid');
+        $('.user-confirmPassword').val('').removeClass('valid').removeClass('invalid');
 
-    $('.edit-profile-button').on('click', function(event) {
         $('.edit-input').toggleClass('bg-dark')
                         .toggleClass('bg-dark-gray')
                         .toggleClass('border-dark')
@@ -27,6 +24,73 @@ $(function(){
 
         if(!$('.edit-input:disabled').length)
             $('.user-firstname').focus();
+    }
+
+    function editUser() {
+        const firstName = $('.user-firstname');
+        const lastName = $('.user-lastname');
+        const password = $('.user-password');
+        const confirmPassword = $('.user-confirmPassword');
+        
+        if (!firstName.hasClass('invalid') && 
+            !lastName.hasClass('invalid')  && 
+            (!password.hasClass('invalid') && password.val() == confirmPassword.val())) {
+            
+            $.ajax({
+                method: 'PATCH',
+                url: `rest/api/v1/user/${localStorage.userId}/edit`,
+                data: JSON.stringify({"firstName" : firstName.val(), "lastName" : lastName.val(), "password" : password.val() }) 
+            })
+            .done(function() {
+                localStorage.firstName = firstName.val();
+                localStorage.lastName  = lastName.val();
+                toggleEditWindow();
+            })
+        }
+    }
+
+    function cancelEditUser() {
+        if ($('.valid, .invalid').length) {
+            if (confirm('Are you sure?\nAll changes will be reverted'))
+                toggleEditWindow();
+        }
+        else
+            toggleEditWindow();
+    }
+
+    $.get(`rest/api/v1/user/${localStorage.userId}`, function(callback) {
+        $('.user-firstname').val(callback.firstName);
+        $('.user-lastname').val(callback.lastName);
+        $('.user-email').val(callback.email);
+
+        //hide loader
+        $('.loader-wrapper').fadeOut('slow');
+    });
+
+    $('.edit-profile-button').on('click', cancelEditUser)
+
+    $('#cancel').on('click', cancelEditUser);
+
+    $('#save').on('click', function() {
+        editUser();
+    })
+
+    $('.user-firstname, .user-lastname').on('input', function() {
+        const name_regex = /[\d\s]/;
+
+        const name = $(this).val();
+
+        if(!name_regex.test(name))
+            $(this).removeClass('invalid');
+        else {
+            $(this).addClass('invalid');
+            $(this).removeClass('valid');
+        }
+
+        if(!name_regex.test(name) && name != '')
+            $(this).addClass('valid');
+        
+
     })
 
     $('.user-password, .user-confirmPassword').on('input', function() {

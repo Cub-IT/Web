@@ -2,24 +2,29 @@
     .settings-list.p-3.overflow-auto.scroll-propagation.position-sticky
         .user-settings.d-flex.flex-column.h-100
             .d-flex.flex-column.overflow-y.mb-auto
-                a.mx-2.my-3(href="main.html")
+                a.mx-2.my-3(href="settings.html")
                     include ../svg/user
                     span.ms-4 Profile
-                a.mx-2.my-3(href="main.html")
-                    include ../svg/personalisation
-                    span.ms-4 Personalisation
-                a.mx-2.my-3(href="main.html")
-                    include ../svg/list
-                    span.ms-4 Notification
+                //- a.mx-2.my-3(href="main.html")
+                //-     include ../svg/personalisation
+                //-     span.ms-4 Personalisation
+                //- a.mx-2.my-3(href="main.html")
+                //-     include ../svg/list
+                //-     span.ms-4 Notification
             .logout
-                a.mx-2.my-3.w-100(href="authorization.html")
+                a.mx-2.my-3.w-100.text-danger(href="authorization.html")
                     include ../svg/leave
-                    span.ms-4 Logout
+                    span.ms-4.text-danger Logout
         .notification-settings
         .personalisation-settings
     .settings-body
          section.container-xxl.groups-content.p-3
             .col.overflow-auto
                 include setting/profile
-                include setting/notification
-                include setting/personalisation
+                
+                //- include setting/notification
+                //- include setting/personalisation
+                .logout.media-small
+                    a.mx-2.my-3.w-100.text-danger(href="authorization.html")
+                        include ../svg/leave
+                        span.ms-4.text-danger Logout

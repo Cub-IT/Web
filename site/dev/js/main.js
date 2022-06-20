@@ -21,8 +21,7 @@ $(function() {
         const groupCode = $('#join-group-code');
 
         const data = JSON.stringify({ "groupCode" : groupCode.val() });
-        $.post(`rest/${localStorage.userId}/groups/join`, data)
-        .done(function() {
+        $.post(`rest/${localStorage.userId}/groups/join`, data, function() {
             location.reload();
         })
         .fail(function() {
@@ -34,11 +33,11 @@ $(function() {
         const groupName = $('#create-group-name').val();
         const groupDesc = $('#create-group-desc').val();
 
-        const data = JSON.stringify({ "name" : groupName, "description" : groupDesc , "creatorId" : Number(localStorage.userId)});
+        const data = JSON.stringify({ "title" : groupName, "description" : groupDesc });
         $.post('rest/api/v1/group/new', data)
-        .done(function() {
+        .always(function() {
             location.reload();
-        })
+        });
     })
 
     $('#join-group-code').on('input', function() {

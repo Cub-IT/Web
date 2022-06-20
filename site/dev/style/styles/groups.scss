@@ -25,6 +25,10 @@
     outline: none;   
 }
 
+#actionGroupModal .modal-dialog {
+    margin-top: 16vh;
+}
+
 #actionGroupModal .modal-content {
     background-color: $dark !important;
 }
