@@ -10,7 +10,7 @@ const merge = require('merge-stream');
 const maps = require('gulp-sourcemaps');
 
 gulp.task('serve', function(done) {
-    return nodemon({ script: 'main.js', watch: '.', ext: 'js', done: done })
+    return nodemon({ script: 'server/main.js', watch: '.', ext: 'js', done: done })
         .on('start', function() {
             // if (!browserSync.active) {
             //     console.log('Starting browser-sync server...');
