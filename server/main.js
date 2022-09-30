@@ -12,10 +12,14 @@
 
 //initialize a simple http server
 const express = require('express');
+const path = require('path');
 
 //custom scripts
 const authRouter = require('./auth/authRouter');
 const db = require('./db');
+const tm = require('./tokenManager');
+
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 const app = express();
 const PORT = process.env.PORT || 9090;

@@ -32,8 +32,8 @@ $(function(){
         const password = $('.user-password');
         const confirmPassword = $('.user-confirmPassword');
         
-        if (!firstName.hasClass('invalid') && 
-            !lastName.hasClass('invalid')  && 
+        if (!firstName.hasClass('invalid') && firstName.val() != '' &&
+            !lastName.hasClass('invalid')  && lastName.val() != '' &&
             (!password.hasClass('invalid') && password.val() == confirmPassword.val())) {
             
             $.ajax({
@@ -62,9 +62,14 @@ $(function(){
         $('.user-firstname').val(callback.firstName);
         $('.user-lastname').val(callback.lastName);
         $('.user-email').val(callback.email);
+        $('.setting-photo .profile-photo').css('background', callback.color);
 
         //hide loader
         $('.loader-wrapper').fadeOut('slow');
+    })
+    .fail(function() {
+        localStorage.clear();
+        //location.replace('authorization.html');
     });
 
     $('.edit-profile-button').on('click', cancelEditUser)

@@ -1,27 +1,37 @@
 $(function() {
+    $.get(`rest/api/v1/user/${localStorage.userId}`)
+    .done(function() {
+        //hide loader
+        $('.loader-wrapper').fadeOut('slow');
+    })
+    .fail(function() {
+        localStorage.clear();
+        //location.replace('authorization.html');
+    });
+
     $.get(`rest/api/v1/user/${localStorage.userId}/groups`, function(callback) {
         if (callback.length)
-            $('#group-empty-warning').remove()
+            $('#group-empty-warning').hide()
         for(var i = 0; i < callback.length; i++) {
             const group = $('#group-template').contents().clone();
-            group.attr('id', `group${callback[i].groupId}`)
-                 .find('.group-title h2').text(callback[i].name).end()
+            group.attr('id', `group${callback[i].id}`)
+                 .find('.group-title h2').text(callback[i].title).end()
                  .find('.group-desc span').text(callback[i].description).end()
                  .find('.group-teacher-name span').text(`${callback[i].ownerFirstName} ${callback[i].ownerLastName}`).end()
             group.appendTo('.groups-place');
 
             $('.group-setting-plate').hide();
         }
-
-        //hide loader
-        $('.loader-wrapper').fadeOut('slow');
-    })
+    });
 
     $('#join').on('click', function(event) {
         const groupCode = $('#join-group-code');
 
-        const data = JSON.stringify({ "groupCode" : groupCode.val() });
-        $.post(`rest/${localStorage.userId}/groups/join`, data, function() {
+        $.ajax({
+            method: 'PATCH',
+            url: `rest/api/v1/user/${localStorage.userId}/join/${groupCode.val()}`
+        })
+        .always(function() {
             location.reload();
         })
         .fail(function() {
@@ -50,13 +60,31 @@ $(function() {
         }
     })
     
-    $('.group-setting-button').on('click', function(event) {
+    $(document).on('click','.group-setting-button', function(event) {
         event.stopPropagation();
 
         $('.group-setting-plate:not(.d-none)').not($(this).closest('.group').find('.group-setting-plate')).fadeOut('fast');
         $(this).closest('.group').find('.group-setting-plate').fadeToggle('fast');
 
     })
+
+    $(document).on('click','.leave-button', function(event) {
+        event.stopPropagation();
+
+        const group = $(this).closest('.group');
+        const groupId = /\d+/.exec(group.attr('id'));
+
+        $.ajax({
+            method: 'PATCH',
+            url: `rest/api/v1/user/${localStorage.userId}/leave/${groupId}`
+        })
+
+        group.remove();
+        $(`a[href="group.html?groupId=${groupId}"]`).remove()
+
+        if ($('.group-class').length == 0)
+            $('#group-empty-warning').show()
+    });
 
     $(document).on('click', '.group-class', function() {
         const group = $(this).closest('.group');

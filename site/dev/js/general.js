@@ -9,8 +9,8 @@ $(function() {
         
     });
     //redirect if 
-    if(window.location.href.indexOf("authorization.html") == -1 && (/*!localStorage.getItem('token') || */ !localStorage.getItem('userId'))) {
-        window.location.replace("authorization.html");
-        localStorage.clear();
-    }
+    // if(window.location.href.indexOf("authorization.html") == -1 && (/*!localStorage.getItem('token') || */ !localStorage.getItem('userId'))) {
+    //     window.location.replace("authorization.html");
+    //     localStorage.clear();
+    // }
 })

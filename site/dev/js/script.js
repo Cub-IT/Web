@@ -10,10 +10,10 @@ $(function() {
             $('body').css('overflow', 'auto');
         }
     })
-    $('.navbar-menu').on('mouseleave', function() {
-        $('navbarMenu').fadeOut('fast');
-        $('body').css('overflow', 'auto');
-    })
+    // $('.navbar-menu').on('mouseleave', function() {
+    //     $('navbarMenu').fadeOut('fast');
+    //     $('body').css('overflow', 'auto');
+    // })
     
     // SETTINGS
     $('.scroll-propagation').on('mouseenter', function() {

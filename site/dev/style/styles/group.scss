@@ -82,6 +82,16 @@
     width: fit-content;
 }
 
+.group-information-button {
+    background: none;
+    border:none;
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    outline: none;
+    box-shadow: none;
+}
+
 
 @media (max-width: 991.98px) {
     .media-small {
@@ -90,4 +100,9 @@
     .media-big {
         display: none;
     }
+}
+
+.delete-button {
+    background: none;
+    border: none;
 }

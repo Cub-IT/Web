@@ -1,9 +1,9 @@
 $(function(){
 
 
-    if(/*localStorage.getItem('token') &&*/ localStorage.getItem('userId')) {
-        window.location.replace("main.html");
-    }
+    // if(/*localStorage.getItem('token') &&*/ localStorage.getItem('userId')) {
+    //     window.location.replace("main.html");
+    // }
 
     $('.switch-auth-mode').on('click', function() {
         $('.auth-mode').toggleClass('d-none');

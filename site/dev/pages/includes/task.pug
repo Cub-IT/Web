@@ -14,8 +14,12 @@ template#task-template
                                 br
                                 a(href="https://forms.gle/ed6jwhgZ1RG3Wq9i8") https://forms.gle/ed6jwhgZ1RG3Wq9i8
                 
-        .task-setting.mt-2
-            button.task-setting-button.three-dots.scale-12
+        .task-setting.mt-2.owner-group-buttons
+            button.task-setting-button.three-dots.scale-12.owner-group-buttons
                 span.dot.dot-top
                 span.dot.dot-middle
                 span.dot.dot-bottom
+        .group-setting-plate.position-absolute.p-2.owner-group-buttons
+            button.delete-button.px-2.py-1
+                include ../svg/leave
+                span.mx-2 Delete post
