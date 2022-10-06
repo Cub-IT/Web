@@ -1,0 +1,8 @@
+{
+    "DataBaseConnect": {
+        "host" : "localhost",
+        "user" : "root",
+        "password" : "cubit1235",
+        "database" : "cub_it"
+    }
+}

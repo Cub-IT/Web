@@ -14,17 +14,17 @@ class authController {
             }
 
             const { first_name, last_name, email, password } = req.body;
-            const sql = `SELECT count(*) AS count FROM users WHERE email='${email}'`;
+            const sql = `SELECT count(*) AS count FROM user WHERE email='${email}'`;
             db.query(sql, (err, result) => {
                 const users = result[0];
 
                 if(users.count) {
                     return res.status(400).json({ message: 'User with this email already exists' });
                 }
-
-                const hashPassword = bcryptjs.hashSync(password, Number(process.env.HASH_LENGTH));
-                const newUserSql = 'INSERT INTO `users` (first_name, last_name, email, password) VALUES (?)';
-                const user_values = [ first_name, last_name, email, hashPassword ];
+                const salt = (Math.random() + 1).toString(36).substring(7);
+                const hashPassword = bcryptjs.hashSync(password + salt, Number(process.env.HASH_LENGTH));
+                const newUserSql = 'INSERT INTO `user` (first_name, last_name, email, password, salt) VALUES (?)';
+                const user_values = [ first_name, last_name, email, hashPassword, salt ];
 
                 db.query(newUserSql, [user_values], (err, result) => {
                     if(err)
@@ -52,7 +52,7 @@ class authController {
             }
 
             const { email, password } = req.body;
-            const sql = `SELECT * FROM users WHERE email='${email}'`;
+            const sql = `SELECT * FROM user WHERE email='${email}'`;
             db.query(sql, (err, result) => {
                 const user = result[0];
 
@@ -61,7 +61,7 @@ class authController {
                     return res.status(400).json({ message: 'User with this email does not exists' });
                 }
                 //authorization
-                const validPassword = bcryptjs.compareSync(password, user.password);
+                const validPassword = bcryptjs.compareSync(password + user.salt, user.password);
                 if(!validPassword) {
                     //if invalid password
                     return res.status(400).json({ message: 'Incorrect password' });
@@ -96,7 +96,7 @@ class authController {
 
     async getUsers(req, res) {
         try {
-            const sql = 'SELECT * FROM `users`'
+            const sql = 'SELECT * FROM `user`'
             db.query(sql, (err, result) => {
                 res.send(result);
             })

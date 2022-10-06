@@ -8,7 +8,7 @@
 
 // const url = require('url');
 // const proxy = require('express-http-proxy');
-
+const hostname =require('os').hostname()
 
 //initialize a simple http server
 const express = require('express');
