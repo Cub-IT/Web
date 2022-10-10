@@ -48,7 +48,7 @@ class authController {
         try {
             const validationErrors = validationResult(req);
             if (!validationErrors.isEmpty()) {
-                return res.status(400).json({message: 'Registration failed', validationErrors});
+                return res.status(400).json({message: 'Authorization failed', validationErrors});
             }
 
             const { email, password } = req.body;
@@ -67,8 +67,8 @@ class authController {
                     return res.status(400).json({ message: 'Incorrect password' });
                 }
 
-                const token        = tm.generateAccessToken(user.user_id, user.email, user.role, process.env.ACCESS_TOKEN_SECRET);
-                const refreshToken = tm.generateRefreshToken(user.user_id, user.email, user.role, process.env.REFRESH_TOKEN_SECRET);
+                const token        = tm.generateAccessToken(user.id, user.email, user.role, process.env.ACCESS_TOKEN_SECRET);
+                const refreshToken = tm.generateRefreshToken(user.id, user.email, user.role, process.env.REFRESH_TOKEN_SECRET);
 
 
                 return res.status(200).json({  "status": "Logged in", token, refreshToken });

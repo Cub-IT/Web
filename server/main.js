@@ -16,6 +16,7 @@ const path = require('path');
 
 //custom scripts
 const authRouter = require('./auth/authRouter');
+const classRouter = require('./class/classRouter');
 const db = require('./db');
 const tm = require('./tokenManager');
 
@@ -25,7 +26,9 @@ const app = express();
 const PORT = process.env.PORT || 9090;
 
 app.use(express.json())
+
 app.use('/auth', authRouter);
+app.use('/class', classRouter);
 
 app.get('/*', express.static('./build'));
 
