@@ -34,8 +34,6 @@ class tokenManager {
 
         this.logins.set(refreshToken, payload);
 
-        console.log(this.logins);
-
         return refreshToken;
     }
 
@@ -47,16 +45,12 @@ class tokenManager {
 
         this.logins.set(refreshToken, this.deleteToken(refresh));
 
-        console.log(this.logins);
-
         return { token, refreshToken };
     }
 
     deleteToken(refresh) {
         const about_user = this.logins.get(refresh);
         this.logins.delete(refresh);
-
-        console.log(this.logins);
 
         return about_user;
     }
