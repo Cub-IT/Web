@@ -1,43 +1,26 @@
-// const { parseJSON } = require('jquery');
-// const server = http.createServer(app);
-
-// const http = require('http');
-// const WebSocket = require('ws');
-
-// const bodyParser = require('body-parser');
-
-// const url = require('url');
-// const proxy = require('express-http-proxy');
 const hostname =require('os').hostname()
-
-//initialize a simple http server
-const express = require('express');
 const path = require('path');
-
-//custom scripts
-const authRouter = require('./auth/authRouter');
-const classRouter = require('./class/classRouter');
-const db = require('./db');
-const tm = require('./tokenManager');
-
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
+const db = require('./db');
+
+//initialize a simple http server
+const session = require('express-session')
+const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 9090;
 
 app.use(express.json())
 
-app.use('/auth', authRouter);
-app.use('/class', classRouter);
+app.use(session({
+    secret: 'cub-it',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: true }
+}))
 
-app.get('/*', express.static('./build'));
+require('./rest')(app);
 
-app.get('/rest/users', (req, res) => {
-    const sql = 'SELECT * FROM `users`'
-    db.query(sql, function(err, result) {
-        res.send(result)
-    })
-})
+const PORT = process.env.PORT;
 
 const start = async() => {
     try {
