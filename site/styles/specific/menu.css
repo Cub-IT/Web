@@ -1,0 +1,71 @@
+.menu-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    transition: transform .3s;
+}
+
+.menu-wrapper {
+    background-color: var(--background-color);
+    opacity: .5;
+}
+
+menu {
+    margin: 0;
+    padding: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    position: fixed;
+    z-index: 1;
+    top: 0;
+
+    display: grid;
+    grid-template-columns: 20em auto;
+}
+
+.menu {
+    height: 100%;
+    padding: 2em 1em;
+    background-color: var(--second);
+
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+}
+
+.menu > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    padding: 2em 1em;
+}
+
+.menu-body {
+    border-top: 1px solid var(--third);
+    border-bottom: 1px solid var(--third);
+    flex-grow: 1;
+    overflow: auto;
+}
+
+.menu > div > * {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    gap: 1em;
+}
+
+i.home-icon {
+    content: url('../../svg/home.svg')
+}
+
+i.tasks-icon {
+    content: url('../../svg/tasks.svg')
+}
+
+i.settings-icon {
+    content: url('../../svg/settings.svg')
+}
