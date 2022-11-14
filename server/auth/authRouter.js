@@ -41,6 +41,8 @@ router.post('/registration',
     check("password", 'password must be more than 6 and less than 12 characters').isLength({ min: 6, max: 20 })
 ], controller.registration )
 
+router.get('/registration/:token', controller.confirmRegistration )
+
 router.post('/login',
 [
     check("email", 'Email is incorrect').isEmail(),
@@ -57,6 +59,7 @@ router.get('/login/github',
 router.get('/login/github/callback',
     passport.authenticate('github', {failureRedirect: '/'}),
     function(req, res) {
+        console.log(req);
         res.redirect('../../../../main.html')
     });
 
@@ -69,6 +72,7 @@ router.get('/login/google',
 router.get('/login/google/callback',
     passport.authenticate('google', {failureRedirect: '/'}),
     function(req, res) {
+        console.log(req);
         res.redirect('../../../../main.html')
     });
 

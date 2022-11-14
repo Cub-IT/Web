@@ -9,7 +9,7 @@ module.exports = function(roles) {
         try {
             const token = req.headers.authorization.split(' ')[1];
             if (!token) {
-                return res.status(403).json({ message: 'User is not authorized'});
+                return res.status(401).json({ message: 'User is not authorized'});
             }
             const { role: userRole } = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
@@ -17,12 +17,12 @@ module.exports = function(roles) {
             console.log('has role'+ userRole + hasRole);
 
             if(!hasRole) {
-                return res.status(403).json({ message: 'You do not have access'});
+                return res.status(401).json({ message: 'You do not have access'});
             }
             next();
         } catch (error) {
             console.log(error);
-            return res.status(403).json({ message: 'User is not authorized'});
+            return res.status(401).json({ message: 'User is not authorized'});
         }
     }
 }
