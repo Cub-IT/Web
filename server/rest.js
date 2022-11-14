@@ -18,9 +18,9 @@ module.exports = function(app) {
         db.query(sql, function(err, result) {
             res.send(result)
         })
-    })
-    
-    app.get('/*', express.static(`${__dirname}/../site`));    
+    }) 
+
+    app.get('/*', express.static(`./build`));    
 }
 
 

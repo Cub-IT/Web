@@ -12,12 +12,13 @@ class MailSender {
     }
     
       
-    sendConfirmationEmail = (receiving) => {
+    sendConfirmationEmail = (receiving, token) => {
         const mailOptions = {
             from: process.env.EMAIL_SENDER,
             to: receiving,
             subject: 'Sending Email using Node.js',
-            text: 'That was easy!'
+            text: 'Confirm ypur registration',
+            html: `<a href="https://2b4.app/cub-it/api/auth/registration/${token}">Confirm</a>`
         };
     
         this.transporter.sendMail(mailOptions, function(err, info) {
