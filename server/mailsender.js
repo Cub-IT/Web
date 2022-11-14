@@ -6,7 +6,7 @@ class MailSender {
             service: 'gmail',
             auth: {
             user: process.env.EMAIL_SENDER,
-            pass: 'ksstfrkcjwpjhfes'
+            pass: process.env.EMAIL_SENDER_PASSWORD
             }
         });
     }
