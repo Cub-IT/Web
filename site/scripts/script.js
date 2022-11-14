@@ -1,13 +1,20 @@
+import { ajax } from './ajaxSetup.js'
+
 $(function() {
-    $.ajaxSetup({
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        // beforeSend: function(xhr) {
-        //     if(localStorage.getItem('token'))
-        //         xhr.setRequestHeader('token', localStorage.getItem('token'));
-        // }
+
+    const groups = ajax('class/', { method: 'GET' });
+
+    groups.then((data) => {
+        $.each(data, function(_, group) {
+            console.log(group)
+            const a = $('<a class="link" href="class.html"><span data-inject="title"></span></a>').inject(group, { id: 'class-link', id_part: 'id'})
+            $(a).appendTo('.menu-body')
+            console.log(a);
+
+        })
         
-    });
+    })
+
 
     $(document).on('click', '.menu-btn', function() {
         $('menu').fadeIn('fast');
