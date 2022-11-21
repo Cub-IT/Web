@@ -107,6 +107,6 @@ package-lock.json
 build/.DS_Store
 build/
 
-server/config/*
+server/config/
 
 .DS_Store
