@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
-const db = require('./../db');
-const tm = require('./../tokenManager');
+const db = require('../db');
+const tm = require('../tokenManager');
 
 class classController {
     async getClasses(req, res) {
