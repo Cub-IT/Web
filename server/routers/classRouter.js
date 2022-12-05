@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/classController');
+const controller = require('../controllers/ClassController');
 
-const authMiddleware = require('./../middleware/authMiddleware');
-const roleMiddleware = require('./../middleware/roleMiddleware');
+const authMiddleware = require('../middleware/authMiddleware');
 
-router.get('/:id',               authMiddleware(), controller.getClass );
-router.get('',                   authMiddleware(), controller.getClasses );
-router.get('/:id/people/:role?', authMiddleware(), controller.getPeople );
+router.post('/new',              authMiddleware(), controller.createClass );
+router.post('/add/user',         authMiddleware(), controller.addUser);
+
+router.get('/get/:class_id',               authMiddleware(), controller.getClass );
+router.get('/get',                   authMiddleware(), controller.getClasses );
+// router.get('/:id/people/:role?', authMiddleware(), controller.getPeople );
 
 module.exports = router;

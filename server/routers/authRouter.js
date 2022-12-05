@@ -8,10 +8,9 @@ const passport = require('passport');
 router.use(passport.initialize());
 router.use(passport.session());
 
-const controller = require('../controllers/authController');
+const controller = require('../controllers/AuthController');
 
-const authMiddleware = require('./../middleware/authMiddleware');
-const roleMiddleware = require('./../middleware/roleMiddleware');
+const authMiddleware = require('../middleware/authMiddleware');
 const refreshMiddleware = require('../middleware/refreshMiddleware');
 
 require('../auth/oauth2/github')
