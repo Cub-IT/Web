@@ -21,14 +21,14 @@ class tokenManager {
         
     }
 
-    generateAccessToken(id, email, role = 'USER') {
-        const payload = { id, email, role };
+    generateAccessToken(id, email) {
+        const payload = { id, email };
 
         return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: process.env.ACCESS_TOKEN_LIFE});
     }
 
-    generateRefreshToken(id, email, role = 'USER') {
-        const payload = { id, email, role }
+    generateRefreshToken(id, email) {
+        const payload = { id, email }
 
         const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, { expiresIn: process.env.REFRESH_TOKEN_LIFE});
 
@@ -40,8 +40,8 @@ class tokenManager {
     refreshTokens(refresh) {
         const user = jwt.verify(refresh, process.env.REFRESH_TOKEN_SECRET);
 
-        const token = this.generateAccessToken(user.id, user.email, user.role, process.env.ACCESS_TOKEN_SECRET);
-        const refreshToken = this.generateRefreshToken(user.id, user.email, user.role, process.env.REFRESH_TOKEN_SECRET);
+        const token = this.generateAccessToken(user.id, user.email);
+        const refreshToken = this.generateRefreshToken(user.id, user.email);
 
         this.logins.set(refreshToken, this.deleteToken(refresh));
 
@@ -55,7 +55,9 @@ class tokenManager {
         return about_user;
     }
 
-    getUserData(token) {
+    getUserData(req) {
+        const token = req.headers.authorization.split(' ')[1];
+        
         return jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
     }
 }
