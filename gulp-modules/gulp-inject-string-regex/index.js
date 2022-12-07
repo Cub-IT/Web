@@ -19,7 +19,7 @@ const handlerBefore = (regex, fileContents, opt) => {
     index = fileContents.search(regex);
     if(index > -1 && opt){
         const matches = fileContents.match(regex);
-        str = fs.readFileSync(`${__dirname}/../../${opt.path + matches[opt.regexIndex || 1]}.${opt.fileExtension || 'html'}`, 'utf-8');
+        str = fs.readFileSync(`${__dirname}/../../${opt.path + (opt.filename ? opt.filename :  matches[opt.regexIndex || 1])}.${opt.fileExtension || 'html'}`, 'utf-8');
 
         search = matches[0];
         start = fileContents.substr(0, index);
@@ -38,7 +38,7 @@ const handlerAfter = (regex, fileContents, opt) => {
     index = fileContents.search(regex);
     if(index > -1 && opt){
         const matches = fileContents.match(regex);
-        str = fs.readFileSync(`${__dirname}/../../${opt.path + matches[opt.regexIndex || 1]}.${opt.fileExtension || 'html'}`, 'utf-8');
+        str = fs.readFileSync(`${__dirname}/../../${opt.path + (opt.filename ? opt.filename :  matches[opt.regexIndex || 1])}.${opt.fileExtension || 'html'}`, 'utf-8');
 
         search = matches[0];
         start = fileContents.substr(0, index + search.length);
@@ -59,7 +59,7 @@ module.exports = {
             index = fileContents.search(regex);
             if(index > -1 && opt){
                 const matches = fileContents.match(regex);
-                str = fs.readFileSync(`${__dirname}/../../${opt.path + matches[opt.regexIndex || 1]}.${opt.fileExtension || 'html'}`, 'utf-8');
+                str = fs.readFileSync(`${__dirname}/../../${opt.path + (opt.filename ? opt.filename :  matches[opt.regexIndex || 1])}.${opt.fileExtension || 'html'}`, 'utf-8');
 
                 search = matches[0];
                 start = fileContents.substr(0, index);
@@ -79,7 +79,8 @@ module.exports = {
             index = fileContents.search(regex);
             if(index > -1 && opt){
                 const matches = fileContents.match(regex);
-                str = fs.readFileSync(`${__dirname}/../../${opt.path + matches[opt.regexIndex || 1]}.${opt.fileExtension || 'html'}`, 'utf-8');
+                console.log(opt)
+                str = fs.readFileSync(`${__dirname}/../../${opt.path + (opt.filename ? opt.filename :  matches[opt.regexIndex || 1])}.${opt.fileExtension || 'html'}`, 'utf-8');
 
                 search = matches[0];
                 start = fileContents.substr(0, index + search.length);
