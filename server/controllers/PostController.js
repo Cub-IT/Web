@@ -5,7 +5,7 @@ const Post = require('../models/PostModel');
 class classController {
     async createPost(req, res) {
         try {
-            const user = tm.getUserData(req);
+            const user = req.user
 
             const class_id = req.params.class_id
 

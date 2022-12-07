@@ -1,5 +1,6 @@
-const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
+
+const MailSender = require('../mailsender');
 
 const tm = require('../tokenManager');
 
@@ -26,12 +27,12 @@ class authController {
     }
 
     async confirmRegistration(req, res) {
-        console.log("Confirm Registration")
         try {
-            
             const confimationToken = req.params.token;
 
-            User.createUser(confimationToken).then((result) => {
+            const { first_name, last_name, email, password } = MailSender.parseConfirmationToken(confimationToken);
+
+            User.createUser(first_name, last_name, email, password).then((result) => {
                 res.redirect(result)
             }).catch((error) => {
                 return res.status(400).json( error.message )
@@ -61,6 +62,16 @@ class authController {
             res.status(400).json({message: 'Login failed'})
         }
     }
+
+    // async authorizeUser(req, res) {
+    //     try {
+    //         const user = req.user
+
+            
+    //     } catch (error) {
+            
+    //     }
+    // }
 
     async refreshTokens(req, res) {
         try {

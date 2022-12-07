@@ -5,7 +5,7 @@ const Class = require('../models/ClassModel');
 class classController {
     async getClasses(req, res) {
         try {
-            const user = tm.getUserData(req);
+            const user = req.user
 
             Class.getClasses(user.id).then( (classes) => {
                 return res.status(200).json(classes);
@@ -21,7 +21,7 @@ class classController {
 
     async getClass(req, res) {
         try {
-            const user = tm.getUserData(req);
+            const user = req.user
 
             const class_id = req.params.class_id;
 
@@ -38,7 +38,7 @@ class classController {
 
     async createClass(req, res) {
         try {
-            const user = tm.getUserData(req);
+            const user = req.user
 
             const { title, description } = req.body
 
@@ -59,7 +59,9 @@ class classController {
             const { code } = req.body
             
             Class.addUser(user.id, code).then((group) => {
-                return res.status(200).json({ group })
+                return res.status(200).json( [ group ] )
+            }).catch((error) => {
+                return res.status(400).json(error.message)
             })
         } catch (error) {
             return res.status(400).json({ message: "Join Error" })
