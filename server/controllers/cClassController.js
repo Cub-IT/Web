@@ -1,6 +1,6 @@
 const tm = require('../tokenManager');
 
-const Class = require('../models/ClassModel');
+const Class = require('../models/cClassModel');
 
 class classController {
     async getClasses(req, res) {

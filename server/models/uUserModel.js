@@ -1,7 +1,7 @@
 const bcryptjs = require('bcryptjs');
 const tm = require('../tokenManager');
 const MailSender = require('../mailsender');
-const UserDAO = require('../dao/UserDAO')
+const UserDAO = require('../dao/uUserDAO')
 
 class User {
     constructor() {

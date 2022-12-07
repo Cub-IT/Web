@@ -1,4 +1,4 @@
-const PostDAO = require('../dao/PostDAO')
+const PostDAO = require('../dao/pPostDAO')
 
 class Class {
     constructor() {

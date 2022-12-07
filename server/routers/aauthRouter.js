@@ -8,7 +8,7 @@ const passport = require('passport');
 router.use(passport.initialize());
 router.use(passport.session());
 
-const controller = require('../controllers/AuthController');
+const controller = require('../controllers/aAuthController');
 
 const refreshMiddleware = require('../middleware/refreshMiddleware');
 

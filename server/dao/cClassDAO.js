@@ -1,6 +1,6 @@
 const db = require("../database/db")
 
-const ParticipantDAO = require('../dao/PatricipantDAO')
+const ParticipantDAO = require('./pPatricipantDAO')
 
 class ClassDAO {
     baseSql = ""
