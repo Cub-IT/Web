@@ -1,4 +1,4 @@
-const ParticipantDAO = require('../dao/pPatricipantDAO')
+const ParticipantDAO = require('../dao/PatricipantDAO')
 
 module.exports = function() {
     return function (req, res, next) {

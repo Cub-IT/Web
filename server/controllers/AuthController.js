@@ -4,7 +4,7 @@ const MailSender = require('../mailsender');
 
 const tm = require('../tokenManager');
 
-const User = require('../models/uUserModel');
+const User = require('../models/UserModel');
 
 class authController {
     async registration(req, res) {

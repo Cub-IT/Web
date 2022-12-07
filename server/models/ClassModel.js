@@ -1,5 +1,5 @@
-const ClassDAO = require('../dao/cClassDAO')
-const ParticipantDAO = require('../dao/pPatricipantDAO')
+const ClassDAO = require('../dao/ClassDAO')
+const ParticipantDAO = require('../dao/PatricipantDAO')
 
 // used group instead class, bcs class reserver name 
 

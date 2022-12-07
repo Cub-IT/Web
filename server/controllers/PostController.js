@@ -1,6 +1,6 @@
 const tm = require('../tokenManager');
 
-const Post = require('../models/pPostModel');
+const Post = require('../models/PostModel');
 
 class classController {
     async createPost(req, res) {
