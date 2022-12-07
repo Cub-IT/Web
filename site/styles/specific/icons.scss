@@ -1,0 +1,48 @@
+@import '../variables/variables.scss';
+
+i.brand-cube {
+    width: 5em;
+    content:url('svg/whiteCube.svg');
+}
+
+i.profile-icon {
+    content: url('svg/profile.svg')
+}
+
+i.menu-icon {
+    width: 4em;
+    content: url('svg/menu.svg');
+}
+
+i.three-dot-icon {
+    content: url('svg/three-dot.svg')
+}
+
+i.cub-loader-sm {
+    width: 4em;
+    content: url('svg/whiteCube_animation.svg')
+}
+
+i.cub-loader-md {
+    width: 10em;
+    content: url('svg/whiteCube_animation.svg')
+}
+
+i.cub-loader-lg {
+    width: 20em;
+    content: url('svg/whiteCube_animation.svg')
+}
+
+i.plus-icon {
+    content: url('svg/plus.svg')
+}
+
+i.leave-icon {
+    fill: $danger;
+    content: url('svg/leave.svg')
+}
+
+i.trash-icon {
+    fill: $danger;
+    content: url('svg/trash.svg')
+}

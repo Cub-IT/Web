@@ -1,0 +1,70 @@
+@import '../variables/variables.scss';
+
+.ui-dialog {
+    background-color: $second !important;
+    border-radius: .5em !important;
+    border: none !important;
+
+    &-titlebar {
+        background-color: $second !important;
+        border: none !important;
+        font-size: 1.5em !important;
+
+        &-close {
+            background: none !important;
+            border: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            transition: all .2s;
+            &:hover {
+                transform: scale(1.1);
+                transition: all .2s;
+            }
+            & .ui-icon-closethick {
+                background-image: url('../../svg/plus.svg') !important;
+                transform: rotate(45deg) !important;
+                background-position: -8px -8px !important;
+            }
+        }
+    }
+
+    &-buttonpane {
+        background-color: $second !important;
+        border: none !important;
+    }
+}
+
+
+
+.ui-button {
+
+    border: none !important;
+    color: $font-color-white !important;
+    transition: all .2s;
+
+    &.ui-create, &.ui-join {
+        background-color: $success !important;
+        &:hover {
+            background-color: $success-hover !important;
+        }    
+    }
+    
+    &.ui-close-dialog {
+        background-color: $danger !important;
+
+        &:hover {
+            background-color: $danger !important;
+        }    
+    }
+
+    &:hover {
+        transform: scale(1.01);
+        transition: all .2s;
+    }
+}
+
+.ui-widget-overlay {
+    background: $background-color !important;
+    opacity: .5 !important;
+}
+

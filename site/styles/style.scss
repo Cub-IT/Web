@@ -1,9 +1,22 @@
 @import 'variables/variables.scss';
+@import 'specific/icons.scss';
+@import 'specific/dialog.scss';
 
 * {
     font-family: "Kanit", sans-serif;
     color: $font-color-white;
     font-weight: 400;
+}
+
+#loader {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $background-color;
+    z-index: 1000;
 }
 
 a {
@@ -27,6 +40,11 @@ a.link:hover {
 
 button {
     cursor: pointer;
+}
+
+button.btn {
+    background: none;
+    border: none;
 }
 
 body {
@@ -74,26 +92,10 @@ div.brand {
     justify-content: center;
 }
 
-i.brand-cube {
-    width: 5em;
-    content:url('svg/whiteCube.svg');
-}
-
-i.profile-icon {
-    content: url('svg/profile.svg')
-}
-
-i.menu-icon {
-    width: 4em;
-    content: url('svg/menu.svg');
-}
-
-i.three-dot-icon {
-    content: url('svg/three-dot.svg')
-}
-
 input.input,
+textarea,
 input.button {
+    resize: none;
     display: block;
     outline: none;
     font-family: inherit;

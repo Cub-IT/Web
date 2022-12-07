@@ -1,0 +1,56 @@
+@import 'variables/variables.scss';
+
+#about-class {
+    padding: 2em;
+    background-color: $second;
+    border: 2px solid $second;
+    border-radius: .5em;
+}
+
+#class-posts {
+    margin-top: 2em;
+    padding: 1em;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    border: 2px solid $second;
+    border-radius: .5em;
+
+    & > .post {
+        border: 2px solid $second;
+        border-radius: .5em;
+        padding: 1em;
+        background-color: $second;
+
+        & > .post-author {
+            display: flex;
+            gap: 1em;
+            & > div {
+                display: flex;
+                &:first-child{
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 50% 50%;
+                    border: 2px solid $third;
+                    width: 2.5em;
+                    height: 2.5em;
+
+                }
+
+                &:last-of-type {
+                    justify-content: space-between;
+                    flex-direction: column;
+                }
+            }
+        }
+        
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .class {
+        padding: 0 1em;
+    }
+}
