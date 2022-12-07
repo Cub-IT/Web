@@ -10,7 +10,6 @@ router.use(passport.session());
 
 const controller = require('../controllers/AuthController');
 
-const authMiddleware = require('../middleware/authMiddleware');
 const refreshMiddleware = require('../middleware/refreshMiddleware');
 
 require('../auth/oauth2/github')
@@ -23,14 +22,6 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(user, done) {
     done(null, user);
 });
-
-router.get('/good', function(req, res) {
-    console.log(req.user);
-    if(req.user)
-        res.status(200).json({"status" : "ok"})
-    else
-        res.status(401).json({"status" : "not ok"})
-})
 
 router.post('/registration',
 [
@@ -58,7 +49,6 @@ router.get('/login/github',
 router.get('/login/github/callback',
     passport.authenticate('github', {failureRedirect: '/'}),
     function(req, res) {
-        console.log(req);
         res.redirect('../../../../main.html')
     });
 
@@ -75,18 +65,18 @@ router.get('/login/google/callback',
         res.redirect('../../../../main.html')
     });
 
-router.get('/login/linkedin',
-    passport.authenticate('linkedin', { scope: [ 'profile' ] }), 
-    function(req, res) {
-        res.status(200).json( { "status": "linkedin"});
-    });
+// router.get('/login/linkedin',
+//     passport.authenticate('linkedin', { scope: [ 'profile' ] }), 
+//     function(req, res) {
+//         res.status(200).json( { "status": "linkedin"});
+//     });
 
-router.get('/login/linkedin/callback',
-    passport.authenticate('linkedin', {failureRedirect: '/'}),
-    function(req, res) {
-        console.log(req);
-        res.redirect('/main.html')
-    });
+// router.get('/login/linkedin/callback',
+//     passport.authenticate('linkedin', {failureRedirect: '/'}),
+//     function(req, res) {
+//         console.log(req);
+//         res.redirect('/main.html')
+//     });
 
 
 
