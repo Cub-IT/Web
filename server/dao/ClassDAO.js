@@ -3,13 +3,28 @@ const db = require("../database/db")
 const ParticipantDAO = require('../dao/PatricipantDAO')
 
 class ClassDAO {
+    baseSql = ""
     constructor () {
-
+        this.baseSql = `SELECT 
+                            class.*, 
+                            p.label,
+                            u.first_name as creator_first_name,
+                            u.last_name as creator_last_name
+                        FROM class 
+                        INNER JOIN 
+                            (SELECT label, class_id, user_id FROM participant) p
+                            ON class.id = p.class_id
+                        INNER JOIN 
+                            (SELECT class_id, user_id FROM participant WHERE label = 'admin') p2 
+                            ON p2.class_id = p.class_id 
+                        INNER JOIN user u 
+                            ON u.id = p2.user_id`;
     }
 
-    findByIds(...ids) {
+
+    findByIds(user_id, ...ids) {
         return new Promise(( resolve, reject ) => {
-            const sql = `SELECT * FROM class WHERE id IN ( ${ids.join(', ')} )`
+            const sql = `${this.baseSql} WHERE p.user_id = ${user_id} AND class.id IN ( ${ids.join(', ')} )`
 
             db.query(sql, (err, result) => {
                 if (err)
@@ -22,7 +37,7 @@ class ClassDAO {
 
     findByCode(code) {
         return new Promise(( resolve, reject ) => {
-            const sql = 'SELECT * FROM class WHERE code = ?';
+            const sql = `${this.baseSql} WHERE class.code = ?`;
 
             db.query(sql, code, (err, result) => {
                 if (err)
@@ -38,9 +53,9 @@ class ClassDAO {
 
             ParticipantDAO.getClassesIds(user_id, class_id).then((class_ids) => {
                 console.log(class_ids);
-                const sql = `SELECT * FROM class WHERE id IN (?)`
+                const sql = `${this.baseSql} WHERE p.user_id = ${user_id} AND class.id IN (?)`
 
-                db.query(sql, [class_ids], (err, result) => {
+                db.query(sql,  [class_ids], (err, result) => {
                     if (err)
                         throw err
                     

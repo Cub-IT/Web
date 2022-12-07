@@ -33,11 +33,11 @@ class UserDAO {
 
     insert (values, ignore = false) {
         return new Promise(( resolve, reject ) => {
-            const sql = `INSERT ${ ignore ?? 'IGNORE' } INTO user (first_name, last_name, email, password, salt) VALUES (?)`;
+            const sql = `INSERT ${ ignore ? 'IGNORE' : '' } INTO user (first_name, last_name, email, password, salt) VALUES (?)`;
 
             db.query(sql, [values], (err, result) => {
                 if(err)
-                    return reject( new Error('User with this email already exists') )
+                    throw err
                 
                 return resolve(result.insertId)
             })

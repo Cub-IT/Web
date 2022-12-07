@@ -31,7 +31,8 @@ class ParticipantDAO {
             user.first_name AS creator_first_name,
             user.last_name AS creator_last_name 
             FROM post INNER JOIN user ON user.id = participant_user_id
-            WHERE participant_class_id = ${class_id} ${post_id ? `AND post.id = ${post_id}` : ''}`;
+            WHERE participant_class_id = ${class_id} ${post_id ? `AND post.id = ${post_id}` : ''}
+            ORDER BY post.creation_date DESC`;
 
             db.query(sql, (err, result) => {
                 if (err)
