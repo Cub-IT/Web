@@ -32,16 +32,21 @@ gulp.task('html',function() {
     return gulp.src('site/*.html')
         .pipe(inject.before('<head>', '<!DOCTYPE html><html lang="en">'))
         .pipe(inject.after('<head>', '<script src="jquery-inject.js""></script>'))
+
+        .pipe(inject.after('<head>', '<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>'))
         .pipe(inject.after('<head>', '<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>'))
-        .pipe(inject.after('<head>', '<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">'))
+        .pipe(inject.after('<head>', '<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"></link>'))
+
         .pipe(inject.after('<head>', '<link rel="stylesheet" href="style.css">'))
         .pipe(inject.after('<head>', '<link rel="stylesheet" href="menu.css">'))
         .pipe(inject.after('<head>', '<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">'))
         .pipe(inject.after('<head>', '<meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0">'))
         .pipe(inject.before('</head>', '<script type="module" src="script.js" defer></script>'))
+        .pipe(inject.before('</head>', '<script src="loader.js" defer></script>'))
         .pipe(inject.after('</body>', '</html>'))
+        .pipe(injectRegex.after('<body>', {path : 'site/includes/', filename : "loader"}))
 
-        .pipe(injectRegex.after(/<template .* data-inject-file="(.+)".*?>/, {path : 'site/includes/'}))
+        .pipe(injectRegex.after(/\<.* data-inject-file="(.+)".*?>/, {path : 'site/includes/'}))
         .pipe(inject.after('<header>', fs.readFileSync('site/includes/header.html', 'utf-8')))
         .pipe(gulp.dest('./build'));
         //.pipe(browserSync.stream());
