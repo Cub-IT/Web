@@ -1,13 +1,27 @@
-<a class="class" href="class.html">
+<a class="class" data-inject-href="class.html">
     <div class="class-header-block">
         <h2 data-inject="title"></h2>
-        <button class="class-action-btn">
+        <button class="class-action-btn" data-inject-target="events-list id">
             <i class="three-dot-icon"></i>
         </button>
+        <ul data-inject-target-element="events-list id" class="class-events-list mouse-leave-event-hide">
+            <li>
+                <button class="btn delete-class admin-access">
+                    <i class="trash-icon"></i>
+                    <span>Delete this class</span>
+                </button>
+            </li>
+            <li>
+                <button class="btn leaver-class user-access">
+                    <i class="leave-icon"></i>
+                    <span>Leave from class</span>
+            </button>
+            </li>
+        </ul>
     </div>
     <div class="class-middle-block">
         <span class="class-description" data-inject="description"></span>
-        <span class="class-owner" data-inject="code"></span>
+        <span class="class-owner" data-inject="creator_first_name creator_last_name" data-inject-separator=" "></span>
     </div>
     <div class="class-footer-block">
         <div class="class-personal-estimates slider">

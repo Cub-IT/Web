@@ -8,7 +8,44 @@
 <body>
     <header></header>
     <main>
+        <div class="class-actions">
+            <button class="btn" data-target="action-list">
+                <i class="plus-icon"></i>
+            </button>
+
+            <ul id="action-list" class="class-actions-list mouse-leave-event-hide">
+                <li>
+                    <button class="btn join-to-class-btn">Join to class</button>
+                </li>
+                <li>
+                    <button class="btn create-class-btn">Create class</button>
+                </li>
+            </ul>
+        </div>
         <div class="classes"></div>
     </main>
+
+    <div id="dialog-join-class" title="Join to class">
+        <form id="join-class-form">
+            <div class="input-form">
+                <label for="class-code">Code</label>
+                <input type="text" name="code" id="class-code" class="input" />
+            </div>
+        </form>
+    </div>
+
+    <div id="dialog-create-class" title="Create new class">
+        <form id="create-new-class-form">
+            <div class="input-form">
+                <label for="new-class-title">Title</label>
+                <input type="text" name="title" id="new-class-title" class="input" />
+            </div>
+            <div class="input-form">
+                <label for="new-class-description">Description</label>
+                <textarea name="description" id="new-class-description"></textarea>
+            </div>
+        </form>
+    </div>
+
 </body>
 <template id="class-template" data-inject-file="class-plate"></template>

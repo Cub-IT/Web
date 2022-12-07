@@ -3,11 +3,28 @@
     
     <script type="module" src="class.js" defer></script>
 
-    <title>Settings</title>
+    <title>Class</title>
 </head>
 <body>
     <header></header>
     <main>
+        <div class="class">
+            <div id="about-class">
+                <div class="about-group-header">
+                    <h2 data-inject="title"></h2>
+                </div>
+                <div class="about-group-header">
+                    <span class="class-description" data-inject="description"></span>
+                </div>
+            </div>
 
+            <div class="text-editor">
+                <div contenteditable="true" style="height: 10em;"></div>
+            </div>
+            
+            <div id="class-posts"></div>
+        </div>
     </main>
 </body>
+
+<template id="post-template" data-inject-file="post-template"></template>
