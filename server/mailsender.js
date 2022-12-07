@@ -28,7 +28,7 @@ class MailSender {
                 to: receiving,
                 subject: 'Sending Email using Node.js',
                 text: 'Confirm ypur registration',
-                html: `<a href="https://2b4.app/cub-it/api/auth/registration/${token}">Confirm</a>`
+                html: `<a href="https://2b4.app/api/auth/registration/${token}">Confirm</a>`
             };
         
             this.transporter.sendMail(mailOptions, function(err, info) {
