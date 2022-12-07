@@ -1,8 +1,6 @@
 const bcryptjs = require('bcryptjs');
 const tm = require('../tokenManager');
-
 const MailSender = require('../mailsender');
-
 const UserDAO = require('../dao/UserDAO')
 
 class User {
@@ -42,11 +40,13 @@ class User {
         })
     }
 
-    createUser(confirmationToken) {
+    createUser(first_name, last_name, email, password) {
         return new Promise(( resolve, reject ) => {
-            const { first_name, last_name, email, password } = MailSender.parseConfirmationToken(confirmationToken);
             UserDAO.findByEmail(email).then((user) => {
-                if (user) return reject( new Error('User with this email already exists') )
+                console.log(user);
+                if (user) {
+                    return reject( new Error('User with this email already exists') )
+                }
 
                 const salt = (Math.random() + 1).toString(36).substring(7);
                 const hashPassword = bcryptjs.hashSync(password + salt, Number(process.env.HASH_LENGTH));
@@ -54,10 +54,24 @@ class User {
                 const user_values = [ first_name, last_name, email, hashPassword, salt ];
 
                 UserDAO.insert(user_values, true).then(() => {
-                    return resolve('https://2b4.app/cub-it/');
+                    return resolve('/');
                 }).catch((error) => {
                     reject(error)
                 })
+            })
+        })
+    }
+
+    createUserOrLogin(first_name, last_name, email) {
+        return new Promise(( resolve, reject ) => {
+            UserDAO.findByEmail(email).then((user) => {
+                if (user) {
+                    const token        = tm.generateAccessToken(user.id, user.email);
+                    const refreshToken = tm.generateRefreshToken(user.id, user.email);
+
+                    return resolve( {token, refreshToken} )
+                }
+                UserDAO.insert()
             })
         })
     }

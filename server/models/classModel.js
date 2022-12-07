@@ -38,12 +38,19 @@ class Class {
         return new Promise(( resolve, reject ) => {
             ClassDAO.findByCode(code).then((group) => {
                 if (!group[0])
-                    return reject("Class with this code does not exest");
-                
-                ParticipantDAO.insert(user_id, group[0].id, 'user').then(() => {
-                    return resolve(group[0])
-                }).catch((error) => {
-                    return reject(error)
+                    return reject(new Error("Class with this code does not exist"));
+
+                ParticipantDAO.getClassesIds(user_id, group[0].id).then((ids) => {
+                    if (ids.length != 0 ) {
+                        return reject(new Error("User already exist in class"))
+                    }
+
+                    ParticipantDAO.insert(user_id, group[0].id, 'user').then(() => {
+                        console.log(group[0])
+                        return resolve(group[0])
+                    }).catch((error) => {
+                        return reject(error)
+                    })
                 })
             })
         })
