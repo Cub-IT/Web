@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+const tm = require('../tokenManager');
 
 module.exports = function() {
     return function (req, res, next) {
@@ -7,12 +7,9 @@ module.exports = function() {
         }
 
         try {
-            const token = req.headers.authorization.split(' ')[1];
-            if (!token) {
-                return res.status(400).json({ message: 'Token is empty'});
-            }
-            const decodeData = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-            req.user = decodeData;
+            const user = tm.getUserData(req);
+            
+            req.user = user;
             next();
         } catch (error) {
             return res.status(401).json({ message: 'Token expired'});
