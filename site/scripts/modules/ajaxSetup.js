@@ -7,7 +7,7 @@ export const ajax = (uri, settings) => new Promise((resolve, reject) => {
 			url: 'api/' + uri,
 			headers: { 'Authorization' : `Bearer ${localStorage.getItem('token') || '' }` },
 			contentType: settings.data && 'application/json; charset=UTF-8' || false,
-			data: settings.data && JSON.stringify(settings.data) || null,
+			data: settings.data ? JSON.stringify(settings.data) : null,
 			dataType: 'json',
 			success: (resp) => {
 				resolve(resp) 
@@ -18,10 +18,10 @@ export const ajax = (uri, settings) => new Promise((resolve, reject) => {
 	};
 
 	const error = (xhr, textStatus, errorThrown) => {
-		if (xhr.responseJSON)
+		if (xhr.responseJSON && xhr.status == 200)
 			resolve($.extend({ data: { } }, xhr.responseJSON));
 		else
-			reject(errorThrown);
+			reject(xhr.responseJSON);
 	};
 
 	$.ajax(setup((xhr, textStatus, errorThrown) => {
@@ -40,8 +40,10 @@ export const ajax = (uri, settings) => new Promise((resolve, reject) => {
 					$.ajax(setup(error));
 				}
 			}).fail(() => {
-				// localStorage.clear();
-				// window.location.assign('/');
+				if(window.location.pathname != '/') {
+					localStorage.clear();
+					window.location.assign('/');
+				}
 			})
 
 			return
