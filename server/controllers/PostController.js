@@ -1,4 +1,3 @@
-const { json } = require('body-parser');
 const { validationResult } = require('express-validator');
 const Post = require('../models/PostModel');
 
@@ -61,6 +60,11 @@ class classController {
 
     async updatePost(req, res) {
         try {
+            const validationErrors = validationResult(req);
+            if (!validationErrors.isEmpty()) {
+                return res.status(400).json({message: 'Create class failed', validationErrors});
+            }
+
             const class_id = req.params.class_id
             const post_id = req.params.post_id
 

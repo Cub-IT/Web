@@ -29,6 +29,8 @@ router.get('/class/:class_id/get',
 
 router.patch('/class/:class_id/modify/:post_id', 
 [
+    check("title", 'Field "Title" cannot be empty must be less than 100 characters').isLength({ max: 100 }),
+    check("description", 'Field "Description" cannot be empty and must be more than 6 and less than 500 characters').isLength({ min: 6, max: 500 }),
     authMiddleware(),
     classAccessMiddleware(),
     roleMiddleware()

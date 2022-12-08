@@ -46,6 +46,8 @@ controller.getClasses );
 
 router.patch('/:class_id/modify', 
 [
+    check("title", 'Field "Title" must be more than 4 and less than 45 characters').notEmpty().isLength({ min: 4, max: 45 }),
+    check("description", 'Field "Description" must be more than 6 and less than 256 characters').notEmpty().isLength({ min: 6, max: 256 }),
     authMiddleware(),
     classAccessMiddleware(),
     roleMiddleware()

@@ -89,6 +89,11 @@ class classController {
 
     async updateClass(req, res) {
         try {
+            const validationErrors = validationResult(req);
+            if (!validationErrors.isEmpty()) {
+                return res.status(400).json({message: 'Create class failed', validationErrors});
+            }
+            
             const user = req.user
 
             const class_id = req.params.class_id
