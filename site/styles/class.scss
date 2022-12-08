@@ -4,7 +4,64 @@
     padding: 2em;
     background-color: $second;
     border: 2px solid $second;
+    border-radius: .5em;    
+}
+
+.about-class
+{
+    &-header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &-body {
+        display: flex;
+        flex-direction: column;
+        & span:last-child {
+            margin-top:2em;
+            text-align: end;
+        }
+    }
+}
+
+
+.class-owner {
+    display: flex;
+    min-width: max-content;
+    gap: 1em;
+    & > div {
+        display: flex;
+        flex-direction: column;
+        &:first-child{
+            justify-content: center;
+            align-items: center;
+            border-radius: 50% 50%;
+            border: 2px solid $third;
+            width: 2.5em;
+            height: 2.5em;
+        }
+    }
+}
+
+
+#post-editor {
+    display: none;
+
+    background-color: $second;
+    padding: 2em;
     border-radius: .5em;
+
+    & .input-form {
+        padding: .5em 0;
+        & input, & textarea {
+            margin-top: .5em;
+        }
+    }
+}
+
+.post-actions {
+    display: flex;
+    justify-content: end;
 }
 
 #class-posts {
@@ -46,6 +103,18 @@
             }
         }
         
+    }
+}
+
+.user {
+    & .admin-access {
+        display: none;
+    }
+}
+
+.admin {
+    & .user-access {
+        display: none;
     }
 }
 

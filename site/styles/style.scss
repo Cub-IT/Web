@@ -1,6 +1,7 @@
 @import 'variables/variables.scss';
 @import 'specific/icons.scss';
 @import 'specific/dialog.scss';
+@import 'specific/buttons.scss';
 
 * {
     font-family: "Kanit", sans-serif;
@@ -36,15 +37,6 @@ a.link.icon {
 a.link:hover {
     text-decoration: underline;
     color: currentColor;
-}
-
-button {
-    cursor: pointer;
-}
-
-button.btn {
-    background: none;
-    border: none;
 }
 
 body {
