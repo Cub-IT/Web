@@ -10,16 +10,44 @@
     <main>
         <div class="class">
             <div id="about-class">
-                <div class="about-group-header">
+                <div class="about-class-header">
                     <h2 data-inject="title"></h2>
+
+                    <div class="class-owner">
+                        <div><i class="profile-icon"></i></div>
+                        <div>
+                            <span data-inject="creator_first_name creator_last_name" data-inject-separator=" "></span>
+                            <span data-inject-date="creation_date"></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="about-group-header">
+                <div class="about-class-body">
                     <span class="class-description" data-inject="description"></span>
+                    <span class="class-code" data-inject="code">Code: </span>
                 </div>
             </div>
 
-            <div class="text-editor">
-                <div contenteditable="true" style="height: 10em;"></div>
+            <div class="post-actions admin-access">
+                <button class="btn" data-target="post-editor" data-target-action="slide">
+                    <i class="plus-icon"></i>
+                </button>
+            </div>
+
+            <div id="post-editor" class="admin-access">
+                <form id="create-post-form">
+                    <div class="input-form">
+                        <label for="create-post-title">Title</label>
+                        <input type="text" name="title" id="create-post-title" class="input"/>
+                    </div>
+                    <div class="input-form">
+                        <label for="create-post-description">Description</label>
+                        <textarea name="description" id="create-post-description" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="input-form button-group">
+                        <button type="button" id="create-post-btn" class="btn btn-success">Create Post</button>
+                        <button type="button" id="cancel-create-post-btn" class="btn btn-danger">Cancel</button>
+                    </div>
+                </form>
             </div>
             
             <div id="class-posts"></div>
