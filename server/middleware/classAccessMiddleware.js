@@ -13,11 +13,14 @@ module.exports = function() {
             console.log(class_id)
 
             ParticipantDAO.getClassesIds(user.id, class_id).then((result) => {
-                if(result.length == 0)
+                if(result.length == 0) {
+                    console.log('Not groups')
                     return res.status(400).json({ message: 'User has not access'});
+                }
                 next()
             })
         } catch (error) {
+            console.log('Not groups2')
             return res.status(400).json({ message: 'User has not access'});
         }
     }

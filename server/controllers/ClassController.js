@@ -1,5 +1,4 @@
-const tm = require('../tokenManager');
-
+const { validationResult } = require('express-validator');
 const Class = require('../models/ClassModel');
 
 class classController {
@@ -38,6 +37,11 @@ class classController {
 
     async createClass(req, res) {
         try {
+            const validationErrors = validationResult(req);
+            if (!validationErrors.isEmpty()) {
+                return res.status(400).json({message: 'Create class failed', validationErrors});
+            }
+            
             const user = req.user
 
             const { title, description } = req.body
@@ -54,7 +58,7 @@ class classController {
 
     async addUser(req, res) {
         try {
-            const user = tm.getUserData(req)
+            const user = req.user
 
             const { code } = req.body
             
@@ -65,6 +69,41 @@ class classController {
             })
         } catch (error) {
             return res.status(400).json({ message: "Join Error" })
+        }
+    }
+
+    async deleteClass(req, res) {
+        try {
+            const user = req.user
+            const class_id = req.params.class_id
+
+            Class.deleteClass(user.id, class_id).then((result) => {
+                return res.status(200).json(result)
+            }).catch((error) => {
+                return res.status(400).json(error.message)
+            })
+        } catch (error) {
+            
+        }
+    }
+
+    async updateClass(req, res) {
+        try {
+            const user = req.user
+
+            const class_id = req.params.class_id
+
+            console.log(req.params)
+
+            const {title, description} = req.body
+
+            Class.updateClass(user.id, class_id, title, description).then((group) => {
+                return res.status(200).json(group)
+            }).catch((error) => {
+                return res.status(400).json(error.message)
+            })
+        } catch (error) {
+            
         }
     }
 

@@ -11,6 +11,8 @@ router.use(passport.session());
 const controller = require('../controllers/AuthController');
 
 const refreshMiddleware = require('../middleware/refreshMiddleware');
+const authMiddleware = require('../middleware/authMiddleware');
+const classAccessMiddleware = require('../middleware/classAccessMiddleware');
 
 require('../auth/oauth2/github')
 require('../auth/oauth2/google')
@@ -28,7 +30,7 @@ router.post('/registration',
     check("first_name", 'Field "First name" cannot be empty').notEmpty(),
     check("last_name", 'Last "First name" cannot be empty').notEmpty(),
     check("email", 'Email is incorrect').isEmail(),
-    check("password", 'password must be more than 6 and less than 12 characters').isLength({ min: 6, max: 20 })
+    check("password", 'password must be more than 6 and less than 20 characters').isLength({ min: 6, max: 20 })
 ], controller.registration )
 
 router.get('/registration/:token', controller.confirmRegistration )
@@ -36,7 +38,7 @@ router.get('/registration/:token', controller.confirmRegistration )
 router.post('/login',
 [
     check("email", 'Email is incorrect').isEmail(),
-    check("password", 'password must be more than 6 and less than 12 characters').isLength({ min: 6, max: 20 })
+    check("password", 'password must be more than 6 and less than 20 characters').isLength({ min: 6, max: 20 })
 ], controller.login )
 
 
@@ -64,6 +66,17 @@ router.get('/login/google/callback',
         console.log(req);
         res.redirect('../../../../main.html')
     });
+
+router.delete('/leave/class/:class_id', 
+    [
+        authMiddleware(),
+        classAccessMiddleware()
+    ],
+    controller.leaveClass );
+
+router.get('/get/user', [
+    authMiddleware()
+], controller.getUser);
 
 // router.get('/login/linkedin',
 //     passport.authenticate('linkedin', { scope: [ 'profile' ] }), 

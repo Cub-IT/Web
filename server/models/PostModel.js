@@ -30,6 +30,16 @@ class Class {
             })
         })
     }
+
+    updatePost(class_id, post_id, title, description) {
+        return new Promise(( resolve, reject ) => {
+            PostDAO.update(post_id, title, description).then(() => {
+                PostDAO.get(class_id, post_id).then((post) => {
+                    return resolve(post)
+                })
+            })
+        })
+    }
 }
 
 

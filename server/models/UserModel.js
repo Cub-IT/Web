@@ -1,11 +1,22 @@
 const bcryptjs = require('bcryptjs');
 const tm = require('../tokenManager');
 const MailSender = require('../mailsender');
-const UserDAO = require('../dao/UserDAO')
+const UserDAO = require('../dao/UserDAO');
+const PatricipantDAO = require('../dao/PatricipantDAO');
 
 class User {
     constructor() {
 
+    }
+
+    getUser(email) {
+        return new Promise(( resolve, reject ) => {
+            UserDAO.findByEmail(email).then((result) => {
+                return resolve(result)
+            }).catch((error) => {
+                return reject(error)                
+            })
+        })
     }
 
     loginUser(email, password) {
@@ -72,6 +83,16 @@ class User {
                     return resolve( {token, refreshToken} )
                 }
                 UserDAO.insert()
+            })
+        })
+    }
+
+    leaveClass(user_id, class_id) {
+        return new Promise(( resolve, reject ) => {
+            PatricipantDAO.delete(user_id, class_id).then((result) => {
+                return resolve(result)
+            }).catch((error) => {
+                return reject(error.message)
             })
         })
     }

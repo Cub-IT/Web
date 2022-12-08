@@ -67,9 +67,9 @@ class ClassDAO {
 
     insert (title, description, user_id) {
         return new Promise(( resolve, reject ) => {
-            const sql = `INSERT INTO class (title, description, code) VALUES('${title}', '${description}', RandString())`
+            const sql = `INSERT INTO class (title, description, code) VALUES(?, ?, RandString())`
 
-            db.query(sql, (err, result) => {
+            db.query(sql, [title, description], (err, result) => {
                 if (err)
                     throw err
                 
@@ -80,6 +80,32 @@ class ClassDAO {
                 }).catch((error) => {
                     return reject(error)
                 })
+            })
+        })
+    }
+
+    delete(class_id) {
+        return new Promise(( resolve, reject ) => {
+            const sql = `DELETE FROM class WHERE id = ${class_id}`
+
+            db.query(sql, (err, result) => {
+                if (err)
+                    throw err;
+                
+                return resolve('Deleted successfully');
+            })
+        })
+    }
+
+    update(class_id, title, description) {
+        return new Promise(( resolve, reject ) => {
+            const sql = `UPDATE class SET title = ?, description = ? WHERE id = ${class_id}`
+
+            db.query(sql, [title, description], (err, result) => {
+                if (err)
+                    throw err;
+                
+                return resolve('Update successfully');
             })
         })
     }

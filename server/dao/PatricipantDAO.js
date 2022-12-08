@@ -20,11 +20,26 @@ class ParticipantDAO {
         })
     }
 
-
-    getClassesIds (user_id, class_id) {
+    delete(user_id, class_id) {
         return new Promise(( resolve, reject ) => {
-            const sql = `SELECT class_id FROM participant WHERE user_id = ${user_id} ${class_id ? `AND class_id = ${class_id}` : ''}`
+            const sql = `DELETE FROM participant WHERE user_id = ${user_id} AND class_id = ${class_id}`
 
+            db.query(sql, (err, result) => {
+                if (err)
+                    return reject(err)
+                
+                return resolve('User deleted succesfuly')
+            })
+        })
+    }
+
+
+    getClassesIds (user_id, class_id, label) {
+        return new Promise(( resolve, reject ) => {
+            const sql = `SELECT class_id FROM participant WHERE user_id = ${user_id} ${class_id ? `AND class_id = ${class_id}` : ''} ${ label ? `AND label = '${label}'` : '' }`
+
+            console.log(sql)
+            
             db.query(sql, (err, result) => {
                 if (err)
                     throw err

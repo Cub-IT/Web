@@ -1,3 +1,4 @@
+const { deleteClass } = require('../controllers/ClassController')
 const ClassDAO = require('../dao/ClassDAO')
 const ParticipantDAO = require('../dao/PatricipantDAO')
 
@@ -52,6 +53,33 @@ class Class {
                         return reject(error)
                     })
                 })
+            })
+        })
+    }
+
+    deleteClass(user_id, class_id) {
+        return new Promise(( resolve, reject ) => {
+            ClassDAO.findByIds(user_id, class_id).then((group) => {
+                if(!group)
+                    return reject(new Error('Class does not exests'))
+                
+                ClassDAO.delete(class_id).then((result) => {
+                    return resolve(result)
+                }).catch((error) => {
+                    return reject(error.message)
+                })
+            })
+        })
+    }
+
+    updateClass(user_id, class_id, title, description) {
+        return new Promise(( resolve, reject ) => {
+            ClassDAO.update(class_id, title, description).then(() => {
+                ClassDAO.get(user_id, class_id).then((group) => {
+                    return resolve(group)
+                })
+            }).catch((error) => {
+                return reject(error.message)
             })
         })
     }

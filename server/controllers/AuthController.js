@@ -7,6 +7,21 @@ const tm = require('../tokenManager');
 const User = require('../models/UserModel');
 
 class authController {
+
+    async getUser (req, res) {
+        try {
+            const user = req.user
+            User.getUser(user.email).then((user_info) => {
+                const {first_name, last_name, email} = user_info;
+                return res.status(200).json({first_name, last_name, email})    
+            }).catch((error) => {
+                return res.status(400).json(error.message)    
+            })
+        } catch (error) {
+            return res.status(400).json(error.message)
+        }
+    }
+
     async registration(req, res) {
         try {
             const validationErrors = validationResult(req);
@@ -52,7 +67,13 @@ class authController {
             const { email, password } = req.body;
 
             User.loginUser(email, password).then( ({ token, refreshToken }) => {
-                return res.status(200).json( { 'status' : 'Logged in', token, refreshToken } )
+
+                User.getUser(email).then((user) => {
+                    const { first_name, last_name, email } = user;
+                    return res.status(200).json( { 'status' : 'Logged in', token, refreshToken, first_name, last_name, email } )
+                }).catch((error) => {
+                    return res.status(400).json( error.message );
+                })
 
             }).catch( (error) => {
                 return res.status(400).json( error.message )
@@ -60,6 +81,21 @@ class authController {
 
         } catch (error) {
             res.status(400).json({message: 'Login failed'})
+        }
+    }
+
+    async leaveClass(req, res) {
+        try {
+            const user = req.user
+            const class_id = req.params.class_id
+
+            User.leaveClass(user.id, class_id).then((result) => {
+                return res.status(200).json(result)
+            }).catch((error) => {
+                return res.status(400).json(error.message)
+            })
+        } catch (error) {
+            
         }
     }
 
