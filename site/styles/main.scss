@@ -48,7 +48,7 @@ form .input-form {
 
         & button {
             margin: .5em;
-            font-size: 1.5em;
+            font-size: 1em;
             white-space: nowrap;
             transition: .2s;
             &:hover {
@@ -135,6 +135,11 @@ form .input-form {
         }
     }
 
+    & .class-header-block h2 {
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
     & .class-middle-block {
         display: flex;
         flex-direction: column;
@@ -164,6 +169,18 @@ form .input-form {
                 }
             }
         }
+    }
+}
+
+.admin {
+    & .user-access {
+        display: none;
+    }
+}
+
+.user {
+    & .admin-access {
+        display: none;
     }
 }
 
