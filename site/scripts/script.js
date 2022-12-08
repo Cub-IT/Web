@@ -32,7 +32,17 @@ $(function() {
 
     $(document).on('click', '[data-target]', function(event) {
         event.preventDefault();
-        $(`#${$(this).data('target')}`).fadeToggle();
+        const targetElement = $(`#${$(this).data('target')}`)
+        $(targetElement).find('input, textarea').not('[type="button"]').val('')
+
+        switch($(this).data('target-action')) {
+            case 'slide':
+                $(targetElement).slideToggle();
+                break;
+            default:
+                $(targetElement).fadeToggle();
+                break;
+        }
     })
 
     $(document).on('mouseleave', '.mouse-leave-event-hide', function() {

@@ -1,4 +1,6 @@
 $(function() {
+    localStorage.clear()
+
     $.ajaxSetup({
         contentType: "application/json; charset=utf-8",
         dataType: "json"
@@ -20,7 +22,7 @@ $(function() {
 
             window.location.assign('main.html') //callback.redirect_uri
         }).fail(function(error) {
-            alert(error.responseJSON.message);
+            alert(error.responseJSON.validationErrors.errors.map((err, k) => {return err.msg}).join('\n'));
         })
     })
 
@@ -32,9 +34,11 @@ $(function() {
             $.post('api/auth/registration', JSON.stringify(body), function(callback) {
                 alert("Confirm your account and login")
             }).fail(function(error) {
-                alert(error.responseJSON.message);
+                alert(error.responseJSON.validationErrors.errors.map((err, k) => {return err.msg}).join('\n'));
             })
         }
+        else
+            alert("The password must match the confirm password")
     })
 
     // $('#dialog').dialog({

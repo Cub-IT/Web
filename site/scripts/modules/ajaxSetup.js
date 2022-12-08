@@ -20,8 +20,14 @@ export const ajax = (uri, settings) => new Promise((resolve, reject) => {
 	const error = (xhr, textStatus, errorThrown) => {
 		if (xhr.responseJSON && xhr.status == 200)
 			resolve($.extend({ data: { } }, xhr.responseJSON));
-		else
+		else {
+			if(xhr.responseJSON.validationErrors) {
+				const validationErrors = xhr.responseJSON.validationErrors.errors
+				const errorText = validationErrors.map((err, k) => {return err.msg}).join('\n')
+				reject(errorText)
+			}
 			reject(xhr.responseJSON);
+		}
 	};
 
 	$.ajax(setup((xhr, textStatus, errorThrown) => {

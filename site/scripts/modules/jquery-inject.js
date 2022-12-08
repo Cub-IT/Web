@@ -5,6 +5,24 @@
     const dataInjectTypes = [ 'inject', 'inject-src', 'inject-href', 'inject-date', 'inject-target', 'inject-target-element' ]
 
     
+    const prepareText = function(text) {
+        text = text.replaceAll(/\n/ig, ' <br/> ')
+
+        const link_regex = /(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm;
+
+        const links = text.match(link_regex);
+        text = text.split(link_regex);
+
+        text = text.map((value, key) => {
+            if (links && links[key]) {
+                return text[key] + `<a href="${links[key]}">${links[key]}</a>`
+            }
+
+            return text[key]
+        }).join(' ');
+
+        return text
+    }
 
     jQuery.fn.inject = function(data, properties) {
 
@@ -12,6 +30,10 @@
             if(properties) {
                 if(properties.id && properties.id_part) {
                     $(this).attr('id', `${properties.id}_${data[properties.id_part]}`)
+                }
+
+                if (properties.class) {
+                    $(this).addClass(data[properties.class])
                 }
             }
 
@@ -28,8 +50,14 @@
                                 $.each(keys, (_, key) => {
                                     text.push(data[key])
                                 })
+
+                                text = text.join(separator)
+
+                                text = text.replaceAll(/\n/ig, ' <br/> ')
+
+                                text = prepareText(text)
                                     
-                                $(this).text( text.join(separator) )
+                                $(this).append( text )
                                 break;
                             case 'inject-src':
                                 break;
@@ -45,6 +73,9 @@
                                 $(this).attr('href', $(this).data('inject-href') + "?" + jQuery.param(params))
                                 break
                             case 'inject-date':
+                                const key = $(this).data(dataInjType)
+
+                                $(this).text(data[key].slice(0, 19).replace('T', ' '))
                                 break;
                             case 'inject-target':
                                 const target_attrs1 = $(this).data(dataInjType).split(' ');

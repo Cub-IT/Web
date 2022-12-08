@@ -5,7 +5,7 @@ $(function() {
 
     const addGroup = function(group) {
         const class_temp = $('#class-template').contents().clone();
-        $(class_temp).inject(group, { id: 'class', id_part: 'id', href_params_keys : "class_id", href_params_values : "id"}).appendTo('.classes')
+        $(class_temp).inject(group, { id: 'class', id_part: 'id', class : 'label', href_params_keys : "class_id", href_params_values : "id"}).appendTo('.classes')
     }
 
     groups.then((data) => {
@@ -18,7 +18,7 @@ $(function() {
         const formData = new FormData($('#join-class-form')[0])
         const formEntries = Object.fromEntries(formData);
 
-        const group = ajax('class/add/user', { method : 'POST', data : formEntries })
+        const group = ajax('class/add/user', { method : 'PATCH', data : formEntries })
 
         group.then((result) => { 
             addGroup(result[0]) 
@@ -97,6 +97,39 @@ $(function() {
 
     $('.create-class-btn').on('click', function() {
         dialog_create.dialog('open')
+    })
+
+
+    const getClassId = function(element) {
+        const group = $(element).closest('a[id^="class_"]');
+        const group_id = $(group).attr('id')
+
+        const class_id = group_id.match(/class_(\d+)/)[1];
+
+        return class_id
+    }
+
+
+    $(document).on('click', '.delete-class', function(event) {
+        event.preventDefault();
+        const class_id = getClassId(this)
+
+        ajax(`class/delete/${class_id}`, { method : 'DELETE'}).then(() => {
+            $(this).closest('a[id^="class_"]').remove();
+        }).catch((error) => {
+            alert(error)
+        })
+    })
+
+    $(document).on('click', '.leave-class', function(event) {
+        event.preventDefault();
+        const class_id = getClassId(this)
+
+        ajax(`auth/leave/class/${class_id}`, { method : 'DELETE'}).then(() => {
+            $(this).closest('a[id^="class_"]').remove();
+        }).catch((error) => {
+            alert(error)
+        })
     })
 })
 
