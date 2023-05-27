@@ -1,12 +1,16 @@
 {
-  "name": "automation",
+  "name": "Cub-IT",
   "version": "1.0.0",
-  "description": "Smart Home Automation project.",
+  "description": "Cub-IT classroom project.",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/main.js",
+    "startDev": "nodemon server/main.js",
+    "certs": "openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout selfsigned.key -out selfsigned.crt -subj \"/C=UA/ST=KV/L=Kyiv/CN=fire\"",
+    "peerjs": "peerjs --port 9091 --host fire --sslkey selfsigned.key --sslcert selfsigned.crt"
   },
-  "author": "",
+  "author": "mplaksyuk",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -35,8 +39,10 @@
     "passport-github2": "^0.1.12",
     "passport-google-oauth20": "^2.0.0",
     "passport-linkedin-oauth2": "^2.0.0",
+    "socket.io": "^4.6.1",
     "url": "^0.11.0",
-    "util": "^0.12.5"
+    "util": "^0.12.5",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "bootstrap": "^5.1.3",
