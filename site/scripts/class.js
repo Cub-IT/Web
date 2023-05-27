@@ -1,6 +1,51 @@
 import { ajax } from './ajaxSetup.js'
 
+$.showChat = () => {
+    $('#chat').show();
+    $.hideVideo();
+    $.hideClass();
+    $.lastScreen = $.showChat;
+}
+$.hideChat = () => {
+    $('#chat').hide();
+}
+
+$.showVideo = () => {
+    $('#video-grid').show();
+    $.hideChat();
+    $.hideClass();
+}
+$.hideVideo = () => {
+    $('#video-grid').hide()
+}
+$.showClass = () => {
+    $('#class').show();
+    $.hideChat();
+    $.hideVideo();
+    $.lastScreen = $.showClass;
+}
+$.hideClass = () => {
+    $('#class').hide();
+}
+
+$.lastScreen = $.showClass;
+
 $(function() {
+
+    $('.expanded').on('click', function() {
+        if (!$.userInRoom || ($.userInRoom && $('#video-grid').is(':visible'))) {
+            const expanded = $(this).prop('ariaExpanded') === "true";
+            $(this).prop('ariaExpanded', !expanded);
+        }
+    })
+
+    $('.class-menu__item').on('click', function() {
+        const trigger = $(this).data('trigger');
+        if(trigger == 'class') $.showClass();
+        else if (trigger == 'chat') $.showChat();
+        else if (trigger == 'video-rooms' && $.userInRoom) $.showVideo();
+    })
+
     const urlParams = new URLSearchParams(window.location.search);
     const class_id = urlParams.get('class_id')
 
@@ -16,7 +61,7 @@ $(function() {
     const group = ajax(`class/get/${class_id}`, { method: 'GET' });
 
     group.then((data) => {
-        $('.class').inject(data[0],  {class : 'label'} )
+        $('#class').inject(data[0],  {class : 'label'} )
 
         const posts = ajax(`post/class/${class_id}/get/`, { method: 'GET' });
 
@@ -42,5 +87,3 @@ $(function() {
 
     $('#cancel-create-post-btn').on('click', clearPostForm)
 })
-
-
