@@ -110,3 +110,6 @@ build/
 server/config/
 
 .DS_Store
+
+selfsigned.crt
+selfsigned.key
