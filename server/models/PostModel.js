@@ -1,6 +1,6 @@
 const PostDAO = require('../dao/PostDAO')
 
-class Class {
+class Post {
     constructor() {
 
     }
@@ -43,4 +43,4 @@ class Class {
 }
 
 
-module.exports = new Class();
+module.exports = new Post();
