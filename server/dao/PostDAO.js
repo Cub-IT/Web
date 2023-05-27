@@ -2,7 +2,7 @@ const db = require("../database/db")
 
 const DBHelper = require("../database/dbhelper");
 
-class ParticipantDAO {
+class PostDAO {
 
     constructor() {
 
@@ -59,4 +59,4 @@ class ParticipantDAO {
     }
 }
 
-module.exports = new ParticipantDAO()
+module.exports = new PostDAO()
