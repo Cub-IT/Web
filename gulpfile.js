@@ -33,7 +33,9 @@ gulp.task('html',function() {
         .pipe(inject.before('<head>', '<!DOCTYPE html><html lang="en">'))
         .pipe(inject.after('<head>', '<script src="jquery-inject.js""></script>'))
 
-        .pipe(inject.after('<head>', '<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>'))
+        .pipe(inject.after('<head>', '<script src="/scripts/socket.io/client-dist/socket.io.js" defer></script>'))// socket io
+        .pipe(inject.after('<head>', '<script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>')) //peer
+        .pipe(inject.after('<head>', '<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>')) //jquery
         .pipe(inject.after('<head>', '<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>'))
         .pipe(inject.after('<head>', '<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"></link>'))
 
@@ -52,7 +54,7 @@ gulp.task('html',function() {
         //.pipe(browserSync.stream());
 });
 
-gulp.task('styles', function() {
+gulp.task('styles', function() {    
     var styles = gulp.src('site/styles/*.scss')
         .pipe(sass({outputStyle: 'compressed'}))
         .pipe(gulp.dest('./build'));
