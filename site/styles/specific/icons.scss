@@ -51,3 +51,53 @@ i.trash-icon {
     fill: $danger;
     content: url('svg/trash.svg')
 }
+
+i.volume-icon {
+    fill: gray;
+    content: url(svg/volume.svg);
+}
+
+i.hash-icon {
+    content: url(svg/hash.svg);
+}
+
+i.arrow-down-icon {
+    content: url(svg/arrow-down.svg);
+}
+i.send-icon {
+    content: url(svg/send.svg);
+}
+
+i.camera-icon {
+    user-select: none;
+    fill: gray;
+    content: url(svg/camera.svg);
+    input:checked + & {
+        content: url(svg/camera-disabled.svg);
+    }
+}
+
+i.microphone-icon {
+    user-select: none;
+    fill: gray;
+    content: url(svg/microphone.svg);
+    input:checked + & {
+        content: url(svg/microphone-disabled.svg);
+    }
+}
+
+i.headphones-icon {
+    user-select: none;
+    fill: gray;
+    content: url(svg/headphones.svg);
+
+    input:checked + & {
+        content: url(svg/headphones-disabled.svg);
+    }
+}
+
+i.end-call-icon {
+    user-select: none;
+    fill: gray;
+    content: url(svg/end-call.svg);
+}
