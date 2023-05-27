@@ -12,8 +12,8 @@ class authController {
         try {
             const user = req.user
             User.getUser(user.email).then((user_info) => {
-                const {first_name, last_name, email} = user_info;
-                return res.status(200).json({first_name, last_name, email})    
+                const {id, first_name, last_name, email} = user_info;
+                return res.status(200).json({id, first_name, last_name, email})    
             }).catch((error) => {
                 return res.status(400).json(error.message)    
             })
