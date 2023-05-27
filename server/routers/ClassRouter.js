@@ -1,11 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/ClassController');
+const messageController = require('../controllers/MessageController');
 
 const authMiddleware = require('../middleware/authMiddleware');
 const classAccessMiddleware = require('../middleware/classAccessMiddleware');
 const roleMiddleware = require('../middleware/roleMiddleware');
 const { check } = require('express-validator');
+
+const io = require('../socket').get();
 
 router.post('/new',              
 [
@@ -53,5 +56,53 @@ router.patch('/:class_id/modify',
     roleMiddleware()
 ]
 ,controller.updateClass)
+
+router.get('/:class_id/messages', [
+    authMiddleware(),
+    classAccessMiddleware()
+], messageController.getMessages)
+
+
+const MessageModel = require('../models/MessageModel');
+
+io.on('connection', socket => {
+    socket.on('join-room', (roomId, userId) => {
+        socket.join(roomId)
+        socket.broadcast.to(roomId).emit('user-connected', userId)
+        
+        socket.on('disconnect', () => {
+          socket.broadcast.to(roomId).emit('user-disconnected', userId)
+        })
+    })
+
+    socket.on('leave-room', (roomId, userId) => {
+        socket.broadcast.to(roomId).emit('user-disconnected', userId)
+    })
+    socket.on('join-chat', (chatId, user) => {
+        socket.join(chatId);
+        socket.on('user-send-message', (message) => {
+            const send_date = new Date();
+            MessageModel.createMessage(user.id, chatId, message, send_date).then(() => {
+                io.to(chatId).emit('message', {user, message, send_date})
+            })
+
+        })
+        socket.on('user-typing', () => {
+            console.log('user-typing');
+            socket.broadcast.to(chatId).emit('typing', user);
+
+            socket.on('user-stop-typing', () => {
+                console.log('user stop typing');
+                socket.broadcast.to(chatId).emit('stop-typing', user);
+            })
+        })
+
+        socket.on('disconnect', () => {
+            socket.broadcast.to(chatId).emit('stop-typing', user);
+        })
+    }) 
+})
+
+
 
 module.exports = router;
